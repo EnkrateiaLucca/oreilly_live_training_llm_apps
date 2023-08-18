@@ -1,0 +1,47 @@
+# O'Reilly Live Trainining - Building Text Based Applications with the ChatGPT API and Langchain
+
+## Setup
+
+**Conda**
+
+- Install [anaconda](https://www.anaconda.com/download)
+- Create an environment: `conda env create -f environment.yml`
+- Activate your environment with: `conda activate oreilly_env`
+- Setup your openai [API key](https://platform.openai.com/)
+
+**Pip**
+
+
+Certainly! Using the traditional virtual environment approach with `venv` (or `virtualenv`) and then installing dependencies from a `requirements.txt` file would look like this:
+
+1. **Create a Virtual Environment:**
+    Navigate to your project directory. If using Python 3's built-in `venv`:
+    ```bash
+    python -m venv oreilly_env
+    ```
+    If you're using `virtualenv`:
+    ```bash
+    virtualenv oreilly_env
+    ```
+
+2. **Activate the Virtual Environment:**
+    - **On Windows:**
+      ```bash
+      .\oreilly_env\Scripts\activate
+      ```
+    - **On macOS and Linux:**
+      ```bash
+      source oreilly_env/bin/activate
+      ```
+
+3. **Install Dependencies from `requirements.txt`:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+Remember to deactivate the virtual environment once you're done by simply typing:
+```bash
+deactivate
+```
+
+
