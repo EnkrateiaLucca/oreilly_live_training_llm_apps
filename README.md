@@ -12,8 +12,6 @@
 **Pip**
 
 
-Certainly! Using the traditional virtual environment approach with `venv` (or `virtualenv`) and then installing dependencies from a `requirements.txt` file would look like this:
-
 1. **Create a Virtual Environment:**
     Navigate to your project directory. If using Python 3's built-in `venv`:
     ```bash
