@@ -38,6 +38,8 @@
     pip install -r requirements.txt
     ```
 
+4. Setup your openai [API key](https://platform.openai.com/)
+
 Remember to deactivate the virtual environment once you're done by simply typing:
 ```bash
 deactivate
