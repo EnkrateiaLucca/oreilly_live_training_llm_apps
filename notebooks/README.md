@@ -36,6 +36,7 @@ Certainly! Using the traditional virtual environment approach with `venv` (or `v
 
 3. **Install Dependencies from `requirements.txt`:**
     ```bash
+    pip install python-dotenv
     pip install -r requirements.txt
     ```
 
@@ -44,4 +45,7 @@ Remember to deactivate the virtual environment once you're done by simply typing
 deactivate
 ```
 
+## Setup your .env file
+
+- Change the `.env.example` file to `.env` and add your OpenAI API key. 
 
