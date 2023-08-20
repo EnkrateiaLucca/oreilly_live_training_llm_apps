@@ -26,6 +26,4 @@ if st.button('Ask ChatGPT'):
     prompt_grammar = "Correct any grammar mistakes in the following text and return the corrected text: " + response
     grammar_corrected_response = llm_model(prompt_grammar)
     st.markdown("Post prompt: " + prompt_grammar)
-    
-    
     st.text_area('Grammar Corrected ChatGPT response:', grammar_corrected_response, height=200)

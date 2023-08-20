@@ -20,7 +20,7 @@ user_input = st.text_input('Enter the subject or topic for the quiz:', '')
 if st.button('Ask ChatGPT'):
     full_prompt = f"Act as an expert quiz maker and tutor. \
     You will help students create instructive quizzes on any subject matter,\
-        the students will input a topic and you will output a quiz.\
+        the students will input a topic and you will output a quiz and the responses at the end.\
         Topic: {user_input},\
         Quiz:"
     st.markdown("__Topic:__ " + user_input)
