@@ -5,6 +5,8 @@ import streamlit as st
 
 
 def create_the_quiz_prompt_template():
+    """Create the prompt template for the quiz app."""
+    
     template = """
 You are an expert quiz maker for technical fields. Let's think step by step and
 create a quiz with {num_questions} {quiz_type} questions about the following concept/content: {quiz_context}.
@@ -52,6 +54,7 @@ The format of the quiz could be one of the following:
     <Answer1>:
     <Answer2>:
 Example:
+    Questions:
     - 1. What is a binary search tree?
     - 2. How are binary search trees implemented?
     
@@ -66,10 +69,11 @@ Example:
 
 
 def create_quiz_chain(prompt_template,llm):
+    """Creates the chain for the quiz app."""
     return LLMChain(llm=llm, prompt=prompt_template)
 
 def split_questions_answers(quiz_response):
-    """"""
+    """Function that splits the questions and answers from the quiz response."""
     questions = quiz_response.split("Answers:")[0]
     answers = quiz_response.split("Answers:")[1]
     return questions, answers
@@ -92,9 +96,9 @@ def main():
         st.session_state.questions = questions
         st.write(questions)
     if st.button("Show Answers"):
-        st.write(st.session_state.questions)
+        st.markdown(st.session_state.questions)
         st.write("----")
-        st.write(st.session_state.answers)
+        st.markdown(st.session_state.answers)
         
 
 if __name__=="__main__":

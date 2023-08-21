@@ -18,7 +18,7 @@ def setup_pdf_qa(pdf):
 
 
 def setup_qa_chain(pdf_doc):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1500, chunk_overlap = 200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 2000, chunk_overlap = 500)
     persist_directory = './persist_directory/'
     embedding = OpenAIEmbeddings()
     all_splits = text_splitter.split_documents(pdf_doc)
@@ -26,7 +26,7 @@ def setup_qa_chain(pdf_doc):
             persist_directory=persist_directory)
     vectordb.persist()
     pdf_qa = ChatVectorDBChain.from_llm(ChatOpenAI(temperature=0,\
-    model_name="gpt-3.5-turbo"), vectordb)
+    model_name="gpt-4"), vectordb)
     return pdf_qa
  
 def main():
@@ -35,8 +35,9 @@ def main():
     pdf = st.text_input("Copy the path to the PDF here:")
  
     # st.write(pdf)
-    if pdf!="":
+    if st.button("Load PDF"):
         st.session_state.pdf_doc = setup_pdf_qa(pdf)
+        st.write("PDF loaded!")
     # Accept user questions/query
     query = st.text_input("Ask questions about your PDF file:")
     # st.write(query)

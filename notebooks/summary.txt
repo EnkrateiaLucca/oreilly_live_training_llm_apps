@@ -1,0 +1,9 @@
+- Kickoff meeting held for new project, CodeName X
+- Goal is to develop a new AI model to improve product capabilities
+- Estimated timeline is 18 months, subject to refinement
+- Resources include development team and AI training facilities
+- Possibility of bringing in external consultants for specific tasks
+- Proposed two-stage process for AI model development: exploratory phase and focused development phase
+- Importance of maintaining good communication highlighted
+- Agile methodology agreed upon for project management
+- Next steps: project brief to be sent out, potential consultants to be researched, sandbox to be set up, project planning meeting to be scheduled

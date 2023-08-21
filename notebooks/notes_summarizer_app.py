@@ -5,9 +5,8 @@ from langchain.document_loaders import TextLoader
 import streamlit as st
 
 def load_text_file(text_file):
-    docs = TextLoader(text_file).load()
-    return docs
-
+    content = TextLoader("./notes.txt").load()
+    return content
 
 def setup_summarization_chain(docs):
     llm = ChatOpenAI()
@@ -26,7 +25,6 @@ def setup_summarization_chain(docs):
     chain = load_summarize_chain(llm, chain_type="stuff", prompt=PROMPT)
     return chain
 
-
 def summarize_content(docs, chain, summary_option):
     """
     Runs the summarization chain with 
@@ -35,18 +33,25 @@ def summarize_content(docs, chain, summary_option):
     summary = chain.run({"input_documents": docs, "style": summary_option})
     return summary
 
-
-
 st.title('Notes Summarizer using ChatGPT')
-uploaded_file = st.text_input("Choose a .txt file")
+
+# Option to upload a file or input text directly
+option = st.radio("Choose an input method:", ["Upload a .txt file", "Input text directly"])
+
+if option == "Upload a .txt file":
+    uploaded_file = st.file_uploader("Choose a .txt file", type=['txt'])
+    docs = ""
+    if uploaded_file:
+        docs = load_text_file(uploaded_file)
+else:
+    docs = st.text_area("Enter your text here")
 
 summary_option = st.selectbox(
     'How do you want your summary?',
-    ('Simple', 'Bullet points', 'Introduction, Argument, Conclusion', 'Custom Summary')
+    ('Simple', 'Bullet points', 'Introduction, Argument, Conclusion')
 )
 
-if uploaded_file!="":
-    docs = load_text_file(uploaded_file)
+if docs:
     chain = setup_summarization_chain(docs)
 
 if st.button('Summarize'):
