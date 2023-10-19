@@ -58,7 +58,7 @@ if st.button('Summarize'):
     st.session_state.summary = summarize_content(docs, chain, summary_option)
 
 if 'summary' in st.session_state and st.session_state.summary:
-    st.write('Your Summary: ', st.session_state.summary)
+    st.write('Your Summary: \n', st.session_state.summary)
     if st.button('Download Summary'):
         with open('summary.txt', 'w') as f:
             f.write(st.session_state.summary)
