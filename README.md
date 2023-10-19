@@ -5,8 +5,9 @@
 **Conda**
 
 - Install [anaconda](https://www.anaconda.com/download)
-- Create an environment: `conda env create -f environment.yml`
+- Create an environment: `conda create -n oreilly_env`
 - Activate your environment with: `conda activate oreilly_env`
+- Install requirements with: `pip install -r requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
 **Pip**
