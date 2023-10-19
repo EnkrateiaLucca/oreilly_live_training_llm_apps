@@ -48,5 +48,8 @@ deactivate
 
 ## Setup your .env file
 
-- Change the `.env.example` file to `.env` and add your OpenAI API key. 
+- Change the `.env.example` file to `.env` and add your OpenAI API key.
 
+## To use this Environment with Jupyter Notebooks:
+
+```python3 -m ipykernel install --user --name=oreilly_env```
