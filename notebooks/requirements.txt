@@ -3,4 +3,5 @@ langchain
 langsmith
 pysqlite3-binary
 chromadb
+unstructured
 streamlit
