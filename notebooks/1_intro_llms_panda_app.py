@@ -1,12 +1,13 @@
 import streamlit as st
 from openai import OpenAI
+import os
 
 openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
 def get_response(prompt):
     client = OpenAI()
     if openai_api_key != "":
-        client.api_key = openai_api_key
+        os.environ["OPENAI_API_KEY"] = openai_api_key
     else:
         st.error("Please enter your OpenAI API key")
         return
