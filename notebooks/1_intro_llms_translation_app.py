@@ -1,8 +1,10 @@
 import streamlit as st
 from openai import OpenAI
+import os
+
 st.session_state["translated_text"] = ""
 # Initialize your OpenAI client
-client = OpenAI()
+
 
 # Define your language options
 languages = {
@@ -14,7 +16,14 @@ languages = {
     "Portuguese": "pt"
 }
 
-def translate_text(input_text, target_language):
+def translate_text(input_text, target_language, openai_api_key):
+    if openai_api_key != "" and os.environ["OPENAI_API_KEY"]=="":
+        os.environ["OPENAI_API_KEY"] = openai_api_key
+    else:
+        st.error("Please enter your OpenAI API key")
+        return
+    
+    client = OpenAI()
     # Here, you'll need to tailor the prompt to instruct ChatGPT to translate
     # Adjust the prompt according to your needs and the capabilities of the model
     prompt = f"Translate this into {target_language}: {input_text}"
@@ -37,6 +46,7 @@ def translate_text(input_text, target_language):
     return translated_text
 
 def main():
+    openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
     st.title("Simple Translation App")
 
     # User inputs
@@ -46,7 +56,7 @@ def main():
     # Translate button
     if st.button("Translate"):
         # Perform the translation
-        st.session_state["translated_text"] = translate_text(input_text, languages[target_language])
+        st.session_state["translated_text"] = translate_text(input_text, languages[target_language],openai_api_key)
         
         # Display the translated text
     
