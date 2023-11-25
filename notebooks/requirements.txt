@@ -6,3 +6,4 @@ langsmith
 unstructured
 tiktoken
 streamlit
+PyPDF2
