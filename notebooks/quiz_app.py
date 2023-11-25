@@ -71,11 +71,6 @@ Example:
 
 def create_quiz_chain(prompt_template,llm, openai_api_key):
     """Creates the chain for the quiz app."""
-    if openai_api_key != "":
-        os.environ["OPENAI_API_KEY"] = openai_api_key
-    else:
-        st.error("Please enter your OpenAI API key")
-        return
     return prompt_template | llm |  StrOutputParser()
 
 def split_questions_answers(quiz_response):
@@ -90,6 +85,10 @@ def main():
     st.write("This app generates a quiz based on a given context.")
     openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
     prompt_template = create_the_quiz_prompt_template()
+    if openai_api_key != "":
+        os.environ["OPENAI_API_KEY"] = openai_api_key
+    else:
+        st.error("Please enter your OpenAI API key")
     llm = ChatOpenAI(temperature=0.0)
     chain = create_quiz_chain(prompt_template,llm, openai_api_key)
     context = st.text_area("Enter the concept/context for the quiz")
