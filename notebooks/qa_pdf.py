@@ -4,6 +4,7 @@ import PyPDF2
 from io import BytesIO
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.schema import Document
+import pysqlite3 as sqlite3
 from langchain.vectorstores import Chroma
 from langchain.chains import ChatVectorDBChain
 from langchain.chat_models import ChatOpenAI
