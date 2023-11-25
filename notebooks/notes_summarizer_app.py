@@ -14,6 +14,11 @@ def load_text_file(uploaded_file):
 
 
 def setup_summarization_chain(docs):
+    if openai_api_key != "":
+        os.environ["OPENAI_API_KEY"] = openai_api_key
+    else:
+        st.error("Please enter your OpenAI API key")
+        return
     llm = ChatOpenAI()
     prompt_template = """Write a concise summary of the following text:
 
@@ -42,7 +47,7 @@ def main():
     st.title('Notes Summarizer using ChatGPT')
     # Option to upload a file or input text directly
     option = st.sidebar.radio("Choose an input method:", ["Upload a .txt file", "Input text directly"])
-
+    openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
     if option == "Upload a .txt file":
         uploaded_file = st.file_uploader("Choose a .txt file", type=['txt'])
         docs = ""
