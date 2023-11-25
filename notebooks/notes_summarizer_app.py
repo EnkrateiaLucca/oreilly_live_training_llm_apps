@@ -1,12 +1,16 @@
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains.summarize import load_summarize_chain
 from langchain.document_loaders import TextLoader
+from langchain.schema import Document
+import os
+import requests
 import streamlit as st
 
 def load_text_file(text_file):
-    content = TextLoader("./notes.txt").load()
+    content = TextLoader(text_file).load()
     return content
+
 
 def setup_summarization_chain(docs):
     llm = ChatOpenAI()
@@ -19,10 +23,10 @@ def setup_summarization_chain(docs):
 
     SUMMARY:"""
 
-    PROMPT = PromptTemplate(template=prompt_template,
+    prompt_summarization = PromptTemplate(template=prompt_template,
                             input_variables=["text", "style"])
 
-    chain = load_summarize_chain(llm, chain_type="stuff", prompt=PROMPT)
+    chain = load_summarize_chain(llm, chain_type="stuff", prompt=prompt_summarization)
     return chain
 
 def summarize_content(docs, chain, summary_option):
@@ -33,34 +37,39 @@ def summarize_content(docs, chain, summary_option):
     summary = chain.run({"input_documents": docs, "style": summary_option})
     return summary
 
-st.title('Notes Summarizer using ChatGPT')
+def main():
+    st.title('Notes Summarizer using ChatGPT')
+    # Option to upload a file or input text directly
+    option = st.sidebar.radio("Choose an input method:", ["Upload a .txt file", "Input text directly"])
 
-# Option to upload a file or input text directly
-option = st.radio("Choose an input method:", ["Upload a .txt file", "Input text directly"])
+    if option == "Upload a .txt file":
+        uploaded_file = st.file_uploader("Choose a .txt file", type=['txt'])
+        docs = ""
+        if uploaded_file:
+            docs = load_text_file(uploaded_file)
+    else:
+        docs_text = st.text_area("Enter your text here")
+        docs = [Document(page_content=docs_text)]
 
-if option == "Upload a .txt file":
-    uploaded_file = st.file_uploader("Choose a .txt file", type=['txt'])
-    docs = ""
-    if uploaded_file:
-        docs = load_text_file(uploaded_file)
-else:
-    docs = st.text_area("Enter your text here")
+    summary_option = st.sidebar.selectbox(
+        'How do you want your summary?',
+        ('Simple', 'Bullet points', 'Introduction, Argument, Conclusion')
+    )
 
-summary_option = st.selectbox(
-    'How do you want your summary?',
-    ('Simple', 'Bullet points', 'Introduction, Argument, Conclusion')
-)
+    if docs:
+        chain = setup_summarization_chain(docs)
 
-if docs:
-    chain = setup_summarization_chain(docs)
+    if st.sidebar.button('Summarize'):
+        st.session_state.summary = summarize_content(docs, chain, summary_option)
 
-if st.button('Summarize'):
-    st.session_state.summary = summarize_content(docs, chain, summary_option)
+    if 'summary' in st.session_state and st.session_state.summary:
+        st.write('Your Summary: \n', st.session_state.summary)
+        if st.sidebar.button('Download Summary'):
+            with open('summary.txt', 'w') as f:
+                f.write(st.session_state.summary)
+            
+            st.write("Your summary was downloaded to summary.txt")
 
-if 'summary' in st.session_state and st.session_state.summary:
-    st.write('Your Summary: \n', st.session_state.summary)
-    if st.button('Download Summary'):
-        with open('summary.txt', 'w') as f:
-            f.write(st.session_state.summary)
-        
-        st.write("Your summary was downloaded to summary.txt")
+
+if __name__ == "__main__":
+    main()
