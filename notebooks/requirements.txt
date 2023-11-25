@@ -1,7 +1,8 @@
 openai
+pysqlite3-binary
+chromadb==0.4.0
 langchain
 langsmith
-pysqlite3-binary
-chromadb
 unstructured
+tiktoken
 streamlit
