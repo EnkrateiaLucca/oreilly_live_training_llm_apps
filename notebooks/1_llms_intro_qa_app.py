@@ -1,14 +1,14 @@
 import streamlit as st
 # source for this code mostly from: https://towardsdatascience.com/run-interactive-sessions-with-chatgpt-in-jupyter-notebook-87e00f2ee461
+import os
+import glob
+import requests
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import DirectoryLoader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from datetime import datetime
-import os
-import glob
-import requests
 
 st.session_state["chat_history"] = []
 
