@@ -2,6 +2,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import StrOutputParser
 import streamlit as st
+import os
 
 
 def create_the_quiz_prompt_template():
@@ -70,6 +71,11 @@ Example:
 
 def create_quiz_chain(prompt_template,llm):
     """Creates the chain for the quiz app."""
+    if openai_api_key != "":
+        os.environ["OPENAI_API_KEY"] = openai_api_key
+    else:
+        st.error("Please enter your OpenAI API key")
+        return
     return prompt_template | llm |  StrOutputParser()
 
 def split_questions_answers(quiz_response):
@@ -82,6 +88,7 @@ def split_questions_answers(quiz_response):
 def main():
     st.title("Quiz App")
     st.write("This app generates a quiz based on a given context.")
+    openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
     prompt_template = create_the_quiz_prompt_template()
     llm = ChatOpenAI(temperature=0.0)
     chain = create_quiz_chain(prompt_template,llm)
