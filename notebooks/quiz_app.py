@@ -69,7 +69,7 @@ Example:
     return prompt
 
 
-def create_quiz_chain(prompt_template,llm):
+def create_quiz_chain(prompt_template,llm, openai_api_key):
     """Creates the chain for the quiz app."""
     if openai_api_key != "":
         os.environ["OPENAI_API_KEY"] = openai_api_key
@@ -91,7 +91,7 @@ def main():
     openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
     prompt_template = create_the_quiz_prompt_template()
     llm = ChatOpenAI(temperature=0.0)
-    chain = create_quiz_chain(prompt_template,llm)
+    chain = create_quiz_chain(prompt_template,llm, openai_api_key)
     context = st.text_area("Enter the concept/context for the quiz")
     num_questions = st.number_input("Enter the number of questions",min_value=1,max_value=10,value=3)
     quiz_type = st.selectbox("Select the quiz type",["multiple-choice","true-false", "open-ended"])
