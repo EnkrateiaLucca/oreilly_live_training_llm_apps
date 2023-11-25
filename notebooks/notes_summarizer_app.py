@@ -7,8 +7,9 @@ import os
 import requests
 import streamlit as st
 
-def load_text_file(text_file):
-    content = TextLoader(text_file).load()
+def load_text_file(uploaded_file):
+    content = uploaded_file.read().decode("utf-8")
+    content = Document(page_content=content)
     return content
 
 
