@@ -9,7 +9,7 @@ import streamlit as st
 
 def load_text_file(uploaded_file):
     content = uploaded_file.read().decode("utf-8")
-    content = Document(page_content=content)
+    content = [Document(page_content=content)]
     return content
 
 
