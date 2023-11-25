@@ -9,7 +9,7 @@ streamlit-image-coordinates==0.1.6
 streamlit-keyup==0.2.0
 streamlit-toggle-switch==1.0.2
 streamlit-vertical-slider==1.0.2
-sqlite3>=3.35.0.
+pysqlite3-binary
 chromadb
 aiohttp==3.8.5
 aiosignal==1.3.1
