@@ -1,6 +1,6 @@
-from langchain import PromptTemplate
-from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
+from langchain.schema import StrOutputParser
 import streamlit as st
 
 
@@ -70,7 +70,7 @@ Example:
 
 def create_quiz_chain(prompt_template,llm):
     """Creates the chain for the quiz app."""
-    return LLMChain(llm=llm, prompt=prompt_template)
+    return prompt_template | llm |  StrOutputParser()
 
 def split_questions_answers(quiz_response):
     """Function that splits the questions and answers from the quiz response."""
@@ -83,13 +83,13 @@ def main():
     st.title("Quiz App")
     st.write("This app generates a quiz based on a given context.")
     prompt_template = create_the_quiz_prompt_template()
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(temperature=0.0)
     chain = create_quiz_chain(prompt_template,llm)
     context = st.text_area("Enter the concept/context for the quiz")
     num_questions = st.number_input("Enter the number of questions",min_value=1,max_value=10,value=3)
     quiz_type = st.selectbox("Select the quiz type",["multiple-choice","true-false", "open-ended"])
     if st.button("Generate Quiz"):
-        quiz_response = chain.run(num_questions=num_questions, quiz_type=quiz_type, quiz_context=context)
+        quiz_response = chain.invoke({"quiz_type":quiz_type,"num_questions":num_questions,"quiz_context":context})
         st.write("Quiz Generated!")        
         questions,answers = split_questions_answers(quiz_response)
         st.session_state.answers = answers
