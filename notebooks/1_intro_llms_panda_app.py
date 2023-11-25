@@ -5,12 +5,12 @@ import os
 openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
 def get_response(prompt):
-    client = OpenAI()
     if openai_api_key != "":
         os.environ["OPENAI_API_KEY"] = openai_api_key
     else:
         st.error("Please enter your OpenAI API key")
         return
+    client = OpenAI()
     response = client.chat.completions.create(model="gpt-3.5-turbo-1106", 
                              messages=
                              [
