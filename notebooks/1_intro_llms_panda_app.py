@@ -13,7 +13,7 @@ def get_response(prompt):
 
 st.title("The Panda Warrior")
 prompt_background_panda = st.sidebar.text_area("Write a different background story for the panda")
-st.image("assets-resources/panda_letter.png", width=400)
+st.image("https://github.com/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/assets-resources/panda_letter.png", width=400)
 
 
 
