@@ -18,7 +18,7 @@ def qa_over_docs_setup(openai_api_key):
         st.error("Please enter your OpenAI API key")
         return
     
-    loader = DirectoryLoader("./docs/", glob="*.txt")
+    loader = DirectoryLoader("https://github.com/EnkrateiaLucca/oreilly_live_training_llm_apps/tree/main/notebooks/docs", glob="*.txt")
     txt_docs = loader.load_and_split()
     embeddings = OpenAIEmbeddings()
     txt_docsearch = Chroma.from_documents(txt_docs, embeddings)
@@ -29,7 +29,7 @@ def qa_over_docs_setup(openai_api_key):
 
 def show_documents():
     st.subheader("Documents")
-    for doc in glob.glob("./docs/*.txt"):    
+    for doc in glob.glob("https://github.com/EnkrateiaLucca/oreilly_live_training_llm_apps/tree/main/notebooks/docs/*.txt"):    
         with open(doc, "r") as f:
             st.write(doc)
             st.write(f.read())
