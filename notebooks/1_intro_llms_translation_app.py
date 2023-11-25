@@ -17,7 +17,7 @@ languages = {
 }
 
 def translate_text(input_text, target_language, openai_api_key):
-    if openai_api_key != "" and os.environ["OPENAI_API_KEY"]=="":
+    if openai_api_key != "":
         os.environ["OPENAI_API_KEY"] = openai_api_key
     else:
         st.error("Please enter your OpenAI API key")
