@@ -19,12 +19,10 @@ def get_response(prompt):
                              ])
     return response.choices[0].message.content
 
+
 st.title("The Panda Warrior")
 prompt_background_panda = st.sidebar.text_area("Write a different background story for the panda")
-
-
 st.image("https://github.com/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/assets-resources/panda_letter.png?raw=true", width=400)
-
 
 
 if st.button("Write letter"):
@@ -33,7 +31,6 @@ if st.button("Write letter"):
     else:
         prompt_background_panda = "You are a 1700th century Panda who's been at war and is now returning to his lovely Panda Lady Pandesque."
         prompt = f"{prompt_background_panda}. Write a short love letter in 5 sentences."
-    
     response = get_response(prompt)
     st.write(response)
     
