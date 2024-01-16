@@ -1,0 +1,9 @@
+openai
+pysqlite3-binary
+PyPDF2
+chromadb==0.4.0
+langchain
+langsmith
+unstructured
+tiktoken
+streamlit
