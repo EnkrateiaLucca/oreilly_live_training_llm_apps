@@ -1,0 +1,1427 @@
+Slide 1:
+Building Text-Based Applications with the ChatGPT API & LangChain
+How to build LLM apps
+Lucas Soares
+21-08-2023
+
+
+
+Slide 2:
+Intro
+Hi!
+Intro
+
+
+Slide 3:
+Quick Survey!
+Where are you from?
+
+
+
+Slide 4:
+Methodology Notes
+
+
+
+Slide 5:
+Methodology Notes
+
+
+
+Slide 6:
+Methodology Notes
+
+
+
+Slide 7:
+Large Language Models
+A definition
+Large Language Models
+
+
+Slide 8:
+Large Language Models
+As Probability Distributions
+At their core, LLMs can be seen as distributions over words.
+Large Language Models
+
+
+Slide 9:
+Large Language Models
+As Probability Distributions
+At their core, LLMs can be seen as distributions over words.
+Use statistical models to capture patterns in text data.
+Large Language Models
+
+
+Slide 10:
+Large Language Models
+As Probability Distributions
+At their core, LLMs can be seen as distributions over words.
+Use statistical models to capture patterns in text data.
+They calculate the likelihood of each word occurring given the context.
+Probability Distribution over the Next Word
+�I love eating�.� ? ?
+pie�
+pasta
+fruit�
+pancakes
+bread�
+Large Language Models
+
+
+Slide 11:
+They capture context, understand dependencies, and predict text based on patterns learned during training.
+
+
+
+Slide 12:
+Complexity
+%Context
+
+
+
+Slide 13:
+Ok, but how?
+LLMs as pattern matchers
+Ok, but how?
+
+
+Slide 14:
+Ok, but how?
+LLMs as pattern matchers
+Ok, but how?
+
+
+Slide 15:
+Ok, but how?
+LLMs as pattern matchers
+Ok, but how?
+
+
+Slide 16:
+Context/Past
+LM
+Future
+
+
+
+Slide 17:
+How LLMs work
+Transformers Architecture
+Traditional sequential models struggle with context (Vaswani et al 2017)
+How LLMs work
+
+
+Slide 18:
+How LLMs work
+Transformers Architecture
+Traditional sequential models struggle with context (Vaswani et al 2017)
+Transformers use attention mechanisms to capture global dependencies, enabling contextual understanding.�(Vaswani et al�2017)
+How LLMs work
+
+
+Slide 19:
+How LLMs work
+Transformers Architecture
+Traditional sequential models struggle with context (Vaswani et al 2017)
+Transformers use attention mechanisms to capture global dependencies, enabling contextual understanding.�(Vaswani et al�2017)
+The attention mechanism allows Transformers to focus on different parts of input simultaneously.�(Vaswani et al�2017)
+How LLMs work
+
+
+Slide 20:
+How LLMs work
+Transformers Architecture
+Traditional sequential models struggle with context (Vaswani et al 2017)
+Transformers use attention mechanisms to capture global dependencies, enabling contextual understanding.�(Vaswani et al�2017)
+The attention mechanism allows Transformers to focus on different parts of input simultaneously.�(Vaswani et al�2017)
+Transformers can understand and predict based on long-range dependencies.�(Vaswani et al�2017)
+How LLMs work
+
+
+Slide 21:
+How LLMs work
+Transformers Architecture
+How LLMs work
+
+
+Slide 22:
+How LLMs work
+Transformers Architecture
+Inputs are processed in parallel!
+How LLMs work
+
+
+
+
+
+Slide 26:
+Applications of Large Language Models
+Content generation
+Q&A
+Translation
+Tutoring
+Personal Assistants
+Applications of Large Language Models
+
+
+Slide 27:
+Applications of LLMs
+Content generation Example - DEMO
+
+
+
+Slide 28:
+Applications of LLMs
+Translation Example - DEMO
+
+
+
+Slide 29:
+LLMs are far from perfect
+Limitations and Ethical Considerations
+Knowledge Limit:�LLMs have a cutoff point for their knowledge.
+
+
+
+Slide 30:
+LLMs are far from perfect
+Limitations and Ethical Considerations
+Knowledge Limit:�LLMs have a cutoff point for their knowledge.
+Understanding Limit: LLMs�do not�understand text in the same way humans do. They�don't�have beliefs or desires;�they simply predict what comes next based on their training.
+
+
+
+Slide 31:
+LLMs are far from perfect
+Limitations and Ethical Considerations
+Knowledge Limit:�LLMs have a cutoff point for their knowledge.
+Understanding Limit: LLMs�do not�understand text in the same way humans do. They�don't�have beliefs or desires;�they simply predict what comes next based on their training.
+Misuse:�LLMs can hallucinate and produce false or harmful content
+
+
+
+Slide 32:
+LLMs are far from perfect
+Limitations and Ethical Considerations
+Knowledge Limit:�LLMs have a cutoff point for their knowledge.
+Understanding Limit: LLMs�do not�understand text in the same way humans do. They�don't�have beliefs or desires;�they simply predict what comes next based on their training.
+Misuse:�LLMs can hallucinate and produce false or harmful content
+Reproducibility:�Unpredictability�of LLM behavior.�Watkins 2023
+
+
+
+Slide 33:
+LLMs are far from perfect
+Limitations and Ethical Considerations
+Knowledge Limit:�LLMs have a cutoff point for their knowledge.
+Understanding Limit: LLMs�do not�understand text in the same way humans do. They�don't�have beliefs or desires;�they simply predict what comes next based on their training.
+Misuse:�LLMs can hallucinate and produce false or harmful content
+Reproducibility:�Unpredictability�of LLM behavior.�Watkins 2023
+Data Privacy and Bias:�Ethical considerations should extend to the acquisition of data for training additional�models.�Models may�have biases; their use should be�transparent�and biases mitigated.�Watkins�2023
+
+
+
+Slide 34:
+Q&A
+Notebook Demo
+
+
+
+Slide 35:
+Prompt basics
+Introduction to the ChatGPT API
+Prompt engineering guide
+Demos & Exercises
+1
+3
+2
+4
+Introduction to prompt engineering and the ChatGPT API
+Introduction to prompt engineering and the ChatGPT API
+
+
+Slide 36:
+Prompt Basics
+1
+Introduction to prompts
+
+
+
+Slide 37:
+Prompt Basics
+1
+Introduction to prompts
+
+
+
+Slide 38:
+Prompt Basics
+1
+LLM Text Space
+LLM Text Space after prompt
+prompt�
+Introduction to prompts
+
+
+
+Slide 39:
+1
+Prompt Basics
+Components of a prompt: instruction, context, input data, output indicator
+
+
+
+Slide 40:
+1
+Prompt Basics
+Classify this sentence into positive or negative: 
+Text: I like eating pancakes
+Output:  
+You are a text annotation engine.
+Components of a prompt: instruction, context, input data, output indicator
+
+
+
+Slide 41:
+1
+Instruction: where you describe what you want
+Prompt Basics
+Components of a prompt: instruction, context, input data, output indicator
+Classify this sentence into positive or negative: 
+Text: I like eating pancakes
+Output:  
+You are a text annotation engine.
+
+
+
+Slide 42:
+1
+Instruction: where you describe what you want
+Context: additional information to help with performance. 
+Prompt Basics
+Classify this sentence into positive or negative: 
+Text: I like eating pancakes
+Output:  
+You are a text annotation engine.
+Components of a prompt: instruction, context, input data, output indicator
+
+
+
+Slide 43:
+1
+Instruction: where you describe what you want
+Context: additional information to help with performance. 
+Input data: example of data you wish the model to process
+Prompt Basics
+Classify this sentence into positive or negative: 
+Text: I like eating pancakes
+Output:  
+You are a text annotation engine.
+Components of a prompt: instruction, context, input data, output indicator
+
+
+
+Slide 44:
+1
+Instruction: where you describe what you want
+Context: additional information to help with performance. 
+Input data: example of data you wish the model to process
+Output indicator: Priming model to output what you want (e.g structure, length, etc..)
+Prompt Basics
+Classify this sentence into positive or negative: 
+Text: I like eating pancakes
+Output:  
+You are a text annotation engine.
+Components of a prompt: instruction, context, input data, output indicator
+
+
+
+Slide 45:
+1
+Instruction: where you describe what you want
+Context: additional information to help with performance. 
+Input data: example of data you wish the model to process
+Output indicator: Priming model to output what you want (e.g structure, length, etc..)
+Prompt Basics
+Notebook Demo
+Components of a prompt: instruction, context, input data, output indicator
+
+
+
+Slide 46:
+Introduction to the ChatGPT API
+2
+Where does ChatGPT fit in this chaotic LLM universe? 
+2
+
+
+
+Slide 47:
+Introduction to the ChatGPT API
+2
+Where does ChatGPT fit in this chaotic LLM universe? 
+2
+Notebook Demo - Intro ChatGPT API
+
+
+
+Slide 48:
+Prompt Engineering Guide
+What is prompt engineering?
+3
+Prompt Engineering Guide
+
+
+Slide 49:
+Prompt Engineering Guide
+What is prompt engineering?
+Prompt engineering: discipline for engineering prompts
+3
+Prompt Engineering Guide
+
+
+Slide 50:
+Prompt Engineering Guide
+What is prompt engineering?
+Prompt engineering: discipline for engineering prompts
+The basic goal of prompt engineering is designing good prompts.
+3
+Prompt Engineering Guide
+
+
+Slide 51:
+Prompt Engineering Guide
+What is prompt engineering?
+Prompt engineering: Discipline for engineering prompts
+3
+It�s about having a process for developing good prompts that yield high performance across tasks.
+The basic goal of prompt engineering is designing good prompts.
+Prompt Engineering Guide
+
+
+Slide 52:
+Prompt Engineering Guide
+What is prompt engineering?
+Prompt engineering: Discipline for engineering prompts
+3
+It�s about having a process for developing good prompts that yield high performance across tasks.
+The basic goal of prompt engineering is designing good prompts.
+Prompt Engineering Guide
+
+
+Slide 53:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Prompt Engineering Guide
+
+
+Slide 54:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 55:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Bad: Who�s president?
+Better: Who was the president of Mexico in 2021? 
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 56:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 2: Provide reference text
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 57:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+SYSTEM
+Use the provided articles delimited by triple quotes to answer questions. If the answer cannot be found in the articles, write "I could not find an answer."
+USER
+<insert articles, each delimited by triple quotes>
+Question: <insert question here>
+Strategy 2: Provide reference text
+Prompt Engineering Guide
+
+
+Slide 58:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 2: Provide reference text
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 59:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 2: Provide reference text
+Prompt Engineering Guide
+
+
+Slide 60:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 2: Provide reference text
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 61:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 2: Provide reference text
+SYSTEM
+Follow these steps to answer the user queries.
+
+Step 1 - First work out your own solution to the problem. Don't rely on the student's solution since it may be incorrect. Enclose all your work for this step within triple quotes (""").
+
+Step 2 - Compare your solution to the student's solution and evaluate if the student's solution is correct or not. Enclose all your work for this step within triple quotes (""").
+
+Step 3 - If the student made a mistake, determine what hint you could give the student without giving away the answer. Enclose all your work for this step within triple quotes (""").
+
+Step 4 - If the student made a mistake, provide the hint from the previous step to the student (outside of triple quotes). Instead of writing "Step 4 - ..." write "Hint:".
+USER
+Problem Statement: <insert problem statement>
+
+Student Solution: <insert student solution>
+
+Prompt Engineering Guide
+
+
+Slide 62:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 5: Use external tools
+Strategy 2: Provide reference text
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 63:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 5: Use external tools
+Strategy 2: Provide reference text
+SYSTEM
+You can write and execute Python code by enclosing it in triple backticks, e.g. ```code goes here```. Use this to perform calculations.
+USER
+Find all real-valued roots of the following polynomial: 3*x**5 - 5*x**4 - 3*x**3 - 7*x - 10.
+
+Prompt Engineering Guide
+
+
+Slide 64:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 5: Use external tools
+Strategy 6: Test changes systematically
+Strategy 2: Provide reference text
+OpenAI docs
+Prompt Engineering Guide
+
+
+Slide 65:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 5: Use external tools
+Strategy 6: Test changes systematically
+Strategy 2: Provide reference text
+Evaluation procedures are useful for optimizing system designs. Good evals are:
+Representative of real-world usage (or at least diverse)
+Contain many test cases for greater statistical power (see table below for guidelines)
+Easy to automate or repeat
+Prompt Engineering Guide
+
+
+Slide 66:
+Prompt Engineering Guide
+OpenAI�s Guide for Building Good Prompts
+Strategy 1: Write clear instructions
+Strategy 3: Break tasks into subtasks
+Strategy 4: Give the model time to think
+Strategy 5: Use external tools
+Strategy 6: Test changes systematically
+Strategy 2: Provide reference text
+Evaluation procedures are useful for optimizing system designs. Good evals are:
+Representative of real-world usage (or at least diverse)
+Contain many test cases for greater statistical power (see table below for guidelines)
+Easy to automate or repeat
+Notebook Demo - Applying Prompt Engineering Strategies
+Prompt Engineering Guide
+
+
+Slide 67:
+Prompt Engineering Guide
+A simplified guide of prompting techniques
+Zero-shot Prompting
+Few-shot Prompting
+Chain-of-Thought
+Self-Consistency
+Generate Knowledge
+Tree of thoughts (ToT)
+3
+Prompt Engineering Guide
+
+
+Slide 68:
+3
+Zero-shot prompting is when you solve the task without showing any examples of what a solution might look like
+Prompt Engineering Guide
+A simplified guide of prompting techniques
+Prompt Engineering Guide
+
+
+Slide 69:
+3
+Zero-shot prompting is when you solve the task without showing any examples of what a solution might look like
+One can use this as the first try at a model to see what kind of tasks LLM can already solve out of the box
+Prompt Engineering Guide
+A simplified guide of prompting techniques
+Prompt Engineering Guide
+
+
+Slide 70:
+3
+Zero-shot prompting is when you solve the task without showing any examples of what a solution might look like
+One can use this as the first try at a model to see what kind of tasks LLM can already solve out of the box
+Prompt Engineering Guide
+A simplified guide of prompting techniques
+Classify the sentiment in this sentence as negative or�positive:�
+Text: I will go to a vacation.�
+Sentiment:
+Prompt Engineering Guide
+
+
+Slide 71:
+2
+Few-shot Prompting
+3
+Provide information in the form of examples to the LLM
+Few-shot Prompting:�technique�where you show a few examples of�what a solution might look like.
+Few-shot Prompting
+
+
+Slide 72:
+2
+Few-shot Prompting
+3
+Provide information in the form of examples to the LLM
+Few-shot Prompting:�technique�where you show a few examples of�what a solution might look like.
+A "whatpu" is a small, furry animal native to Tanzania.�
+An example of a sentence that uses the word whatpu is: We were traveling in Africa and we saw these very cute whatpus.�
+To do a "farduddle" means to jump up and down really fast. An example of a sentence that uses the word farduddle is:�
+Example taken from (Brown et al. 2020)
+Few-shot Prompting
+
+
+Slide 73:
+3
+Chain-of-thought (CoT)�enables complex�reasoning�capabilities through intermediate reasoning�steps (Wei et al. 2022).
+Chain-of-Thought
+Induce step-by-step reasoning and planning
+Chain-of-Thought
+
+
+Slide 74:
+3
+Chain-of-thought (CoT)�enables complex�reasoning�capabilities through intermediate reasoning�steps (Wei et al. 2022).
+Chain-of-Thought
+Induce step-by-step reasoning and planning
+Q:�I have�one sister�and one�brother. I�am 20�years of�age. My�sister is�5�years�older and�my brother�2 years�younger�than my�sister. How�old is my�brother?�
+
+A:�If I am�20 years of�age and�my sister is�5 years�older, my�sister is�20+5=25�years old.�If�my brother�is 2 years�younger�than my�sister, my�brother is�25-2=23�years old.�The�answer is 23�years old.�
+
+Q:�I have 2�friends,�Jack and�Sally. Jack�is 2 years�older than�Sally. Sally�is 5�years�younger than�me. I am�17 years�old.�How�old is�Jack?�
+
+Chain-of-Thought
+
+
+Slide 75:
+3
+Self-Consistency
+Example
+https://arxiv.org/pdf/2203.11171.pdf
+Self-Consistency
+
+
+Slide 76:
+1
+Knowledge Generation: Generating facts related to the question.
+https://arxiv.org/pdf/2110.08387.pdf
+Generate Knowledge
+Example
+Generate Knowledge
+
+
+Slide 77:
+1
+Knowledge Generation: Generating facts related to the question.
+https://arxiv.org/pdf/2110.08387.pdf
+Knowledge Integration: Using generated facts to answer the question comprehensively.
+Generate Knowledge
+Example
+Generate Knowledge
+
+
+Slide 78:
+There are many more prompt engineering techniques that grow in complexity, such as:
+
+ToT (Yao et al. 2023)
+Retrieval Augmented Generation (Lewis et el. (2021))
+Automatic Prompt Engineer (Zhou et al., (2022))
+React Prompting (Yao et al., 2022)
+Graph Prompting (Liu et al., 2023)
+Skeleton of Thought (Ning et al. 2023)
+Step Back Prompting (Zheng et al. 2023)
+
+
+
+Slide 79:
+Q&A / Break
+
+
+
+Slide 80:
+A Framework for Building Good Prompts
+4
+Operate on Structured Text
+@goodside�
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 81:
+4
+Operate on Structured Text
+Introduce decomposition
+Khot et al 2023
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 82:
+4
+Operate on Structured Text
+Introduce decomposition
+Press et al 2023
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 83:
+4
+Operate on Structured Text
+Introduce decomposition
+Kojima et al 2023
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 84:
+4
+Operate on Structured Text
+Introduce decomposition
+Self-criticism
+Kim, Baldi & McAleer 2023
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 85:
+4
+Operate on Structured Text
+Introduce decomposition
+Self-criticism
+Ensembling
+Wang et al 2023
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 86:
+4
+Operate on Structured Text
+Introduce decomposition
+Self-criticism
+Ensembling
+Suzgun et al 2022
+Combine for better performance!
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+A Framework for Building Good Prompts
+
+
+Slide 87:
+4
+Operate on Structured Text
+Introduce decomposition
+Self-criticism
+Ensembling
+FSDL LLM Bootcamp 2023
+A Framework for Building Good Prompts
+4 principles: structured text, decomposition, self-criticism, ensembling 
+Be aware of quality-cost tradeoff!
+A Framework for Building Good Prompts
+
+
+Slide 88:
+Prompt Engineering Lab
+Prompt engineering using the ChatGPT API
+Prompt engineering for text summarization and question answering
+Extracting dates from unstructured data
+Notebook Lab Exercises
+Prompt Engineering Lab
+
+
+Slide 89:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning:
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 90:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning: process of �specialising an LLM on your specific dataset�
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 91:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning: process of �specialising an LLM on your specific dataset�
+Why?
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 92:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning: process of �specialising an LLM on your specific dataset�
+Why? Better results on specific tasks, lower latency� See OpenAI docs
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 93:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning: process of �specialising an LLM on your specific dataset�
+Why? Better results on specific tasks, lower latency� See OpenAI docs
+How?
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 94:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning: process of �specialising an LLM on your specific dataset�
+Why? Better results on specific tasks, lower latency� See OpenAI docs
+How? By preparing a custom .jsonl dataset on your specific use case
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 95:
+Fine Tuning ChatGPT Applications
+A primer on how to fine tune ChatGPT on your data
+Fine Tuning: process of �specialising an LLM on your specific dataset�
+Why? Better results on specific tasks, lower latency� See OpenAI docs
+How? By preparing a custom .jsonl dataset on your specific use case
+The goal of fine tuning is to adapt the model to your specific use case by providing it with a few examples of successful interactions
+3
+Fine Tuning ChatGPT Applications
+
+
+Slide 96:
+Fine Tuning ChatGPT Applications
+3
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 97:
+Fine Tuning ChatGPT Applications
+Setting style, tone, format
+3
+OpenAI docs
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 98:
+Fine Tuning ChatGPT Applications
+Setting style, tone, format
+Correcting failures
+3
+OpenAI docs
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 99:
+Fine Tuning ChatGPT Applications
+Setting style, tone, format
+Correcting failures
+Improving reliability
+3
+OpenAI docs
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 100:
+Fine Tuning ChatGPT Applications
+Setting style, tone, format
+Correcting failures
+Improving reliability
+3
+Handling edge cases
+OpenAI docs
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 101:
+Fine Tuning ChatGPT Applications
+Setting style, tone, format
+Correcting failures
+Improving reliability
+3
+Handling edge cases
+Extracting structured output
+OpenAI docs
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 102:
+Fine Tuning ChatGPT Applications
+Setting style, tone, format
+Correcting failures
+Improving reliability
+3
+Handling edge cases
+Extracting structured output
+Function Calling
+OpenAI docs
+Common Use Cases
+Fine Tuning ChatGPT Applications
+
+
+Slide 103:
+Fine Tuning ChatGPT Applications
+3
+OpenAI docs
+Basic Steps
+Fine Tuning ChatGPT Applications
+
+
+Slide 104:
+Prepare and upload training data
+3
+OpenAI docs
+Basic Steps
+Fine Tuning ChatGPT Applications
+Fine Tuning ChatGPT Applications
+
+
+Slide 105:
+Fine Tuning ChatGPT Applications
+3
+Prepare and upload training data
+Fine Tuning ChatGPT Applications
+
+
+Slide 106:
+Fine Tuning ChatGPT Applications
+3
+Prepare and upload training data
+Fine Tuning ChatGPT Applications
+
+
+Slide 107:
+3
+Prepare and upload training data
+Fine Tuning ChatGPT Applications
+Fine Tuning ChatGPT Applications
+
+
+Slide 108:
+Fine Tuning ChatGPT Applications
+3
+Prepare and upload training data
+Fine Tuning ChatGPT Applications
+
+
+Slide 109:
+Fine Tuning ChatGPT Applications
+3
+Prepare and upload training data
+Fine Tuning ChatGPT Applications
+
+
+Slide 110:
+Fine Tuning ChatGPT Applications
+3
+Prepare and upload training data
+Fine Tuning ChatGPT Applications
+
+
+Slide 111:
+Fine Tuning ChatGPT Applications
+Prepare and upload training data
+Train a new fine-tuned model
+3
+OpenAI docs
+Basic Steps
+Fine Tuning ChatGPT Applications
+
+
+Slide 112:
+Fine Tuning ChatGPT Applications
+3
+Fine Tuning Jobs
+Notebook Presentation Fine Tuning with ChatGPT API
+Fine Tuning ChatGPT Applications
+
+
+Slide 113:
+Fine Tuning ChatGPT Applications
+Prepare and upload training data
+Train a new fine-tuned model
+Use your fine-tuned model
+3
+OpenAI docs
+Basic Steps
+Fine Tuning ChatGPT Applications
+
+
+Slide 114:
+Fine Tuning ChatGPT Applications
+3
+Fine Tuning Jobs
+Disclaimer: Example code is provided in the repository notebooks 
+Fine Tuning ChatGPT Applications
+
+
+Slide 115:
+Summary so far
+
+
+
+Slide 116:
+Break
+
+
+
+Slide 117:
+Prompt management workflows that require dynamic prompts
+Langchain for LLM App Development�
+From static prompts to dynamic prompts
+Langchain for LLM App Development�
+
+
+Slide 118:
+Prompt management workflows that require dynamic prompts
+This dynamics requirement leads to the need for LLM-specific abstractions
+Langchain for LLM App Development�
+From static prompts to dynamic prompts
+Langchain for LLM App Development�
+
+
+Slide 119:
+Langchain for LLM App Development�
+Langchain framework
+Langchain for LLM App Development�
+
+
+Slide 120:
+Models:�abstractions over the LLM APIs like the ChatGPT API
+Basics of Langchain
+Langchain�components
+Basics of Langchain
+
+
+Slide 121:
+Models:�abstractions over the LLM APIs like the ChatGPT API
+Prompt Templates: abstraction over standard prompts to LLMs
+Basics of Langchain
+Langchain�components
+Basics of Langchain
+
+
+Slide 122:
+Models:�abstractions over the LLM APIs like the ChatGPT API
+Prompt Templates: abstraction over standard prompts to LLMs
+Basics of Langchain
+Langchain�components
+Output Parsers: Translates raw output from LLM to a workable format
+https://python.langchain.com/docs/get_started/quickstart
+Basics of Langchain
+
+
+Slide 123:
+Models:�abstractions over the LLM APIs like the ChatGPT API
+Prompt Templates: abstraction over standard prompts to LLMs
+Basics of Langchain
+Langchain�components
+Output Parsers: Translates raw output from LLM to a workable format
+Notebook demo: Introduction to LangChain
+https://python.langchain.com/docs/get_started/quickstart
+Basics of Langchain
+
+
+Slide 124:
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+Models: LLMs and Chat models
+Basics of Langchain
+
+
+Slide 125:
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+Models: LLMs and Chat models
+LLMs: models that take a text string as input and return a text string
+Basics of Langchain
+
+
+Slide 126:
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+Models: LLMs and Chat models
+LLMs: models that take a text string as input and return a text string
+Chat models: takes a list of Chat Messages as input and returns a Chat Message
+Basics of Langchain
+
+
+Slide 127:
+Basics of Langchain
+Messages?: inherits from BaseMessage interface
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+
+
+Slide 128:
+Basics of Langchain
+Messages?: inherits from BaseMessage interface
+content: content of the message (usually a string)
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+
+
+Slide 129:
+Basics of Langchain
+Messages?: inherits from BaseMessage interface
+content: content of the message (usually a string)
+role: entity from which the BaseMessage is coming 
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+
+
+Slide 130:
+Basics of Langchain
+Messages?: inherits from BaseMessage interface
+content: content of the message (usually a string)
+role: entity from which the BaseMessage is coming 
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+
+
+Slide 131:
+Basics of Langchain
+Prompt Templates: pre-defined recipes for generating prompts for LLMs
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+
+
+Slide 132:
+Basics of Langchain
+Prompt Templates: pre-defined recipes for generating prompts for LLMs
+Models, Prompt Templates and Output Parsers
+ChatPromptTemplates: prompt template for chat models
+Basics of Langchain
+
+
+Slide 133:
+Basics of Langchain
+Prompt Templates: pre-defined recipes for generating prompts for LLMs
+Models, Prompt Templates and Output Parsers
+ChatPromptTemplates: prompt template for chat models
+ChatPromptTemplates are designed as a list of chat messages.
+Basics of Langchain
+
+
+Slide 134:
+Basics of Langchain
+Models, Prompt Templates and Output Parsers
+Output Parsers: convert raw output of an LLM into a usable format
+Basics of Langchain
+
+
+Slide 135:
+Basics of Langchain
+Models, Prompt Templates and Output Parsers
+Output Parsers: convert raw output of an LLM into a usable format
+Key Types
+Basics of Langchain
+
+
+Slide 136:
+Basics of Langchain
+Models, Prompt Templates and Output Parsers
+Output Parsers: convert raw output of an LLM into a usable format
+Key Types
+Writing a Custom Output Parser 
+Notebook demo
+Basics of Langchain
+
+
+Slide 137:
+Models, Prompt Templates and Output Parsers
+Basics of Langchain
+Chains of Prompts
+Chains: prompt template + Model
++ output parsing
+Basics of Langchain
+
+
+Slide 138:
+Basics of Langchain
+LLMChain & Sequential Chains
+Sequence of Chains
+input
+output
+Chains: prompt template + Model
++ output parsing
+Basics of Langchain
+
+
+Slide 139:
+Basics of Langchain
+LLMChain & Sequential Chains
+Chains: prompt template + Model
++ output parsing
+Sequence of Chains
+input
+output
+?
+Basics of Langchain
+
+
+Slide 140:
+Basics of Langchain
+LCEL - LangChain Expression Language
+Basics of Langchain
+
+
+Slide 141:
+Basics of Langchain
+LCEL - LangChain Expression Language
+Basics of Langchain
+
+
+Slide 142:
+Basics of Langchain
+LCEL - LangChain Expression Language
+Basics of Langchain
+
+
+Slide 143:
+Basics of Langchain
+LCEL - LangChain Expression Language
+Basics of Langchain
+
+
+Slide 144:
+Basics of Langchain
+LCEL - LangChain Expression Language
+Basics of Langchain
+
+
+Slide 145:
+Basics of Langchain
+LCEL - LangChain Expression Language
+Notebook demo - Building Chains with LangChain
+Basics of Langchain
+
+
+Slide 146:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Basics of LangChain
+
+
+Slide 147:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Basics of LangChain
+
+
+Slide 148:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Basics of LangChain
+
+
+Slide 149:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Basics of LangChain
+
+
+Slide 150:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Basics of LangChain
+
+
+Slide 151:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Basics of LangChain
+
+
+Slide 152:
+Basics of LangChain
+LCEL - LangChain Expression Language
+Notebook demo
+Basics of LangChain
+
+
+Slide 153:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Langchain for LLM App Development�
+
+
+Slide 154:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Embeddings: capture content and meaning�
+Langchain for LLM App Development�
+
+
+Slide 155:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Embeddings: capture content and meaning�
+Embeddings�
+[0.1,0.0456,�.]
+Embeddings�
+[0.004,0.06,�.]
+My dog likes food
+My cat hates waking up
+I love programming
+Embeddings�
+[0.7,0.0135,�.]
+Langchain for LLM App Development�
+
+
+Slide 156:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Embeddings: capture content and meaning�
+Similar
+Not similar
+Similar
+Embeddings�
+[0.1,0.0456,�.]
+Embeddings�
+[0.004,0.06,�.]
+My dog likes food
+My cat hates waking up
+I love programming
+Embeddings�
+[0.7,0.0135,�.]
+Langchain for LLM App Development�
+
+
+Slide 157:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Embeddings: capture content and meaning�
+Vector DBs
+Query
+Langchain for LLM App Development�
+
+
+Slide 158:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Embeddings: capture content and meaning�
+Vector DBs
+Chunking methods for large docs
+Map_reduce
+Refine
+Map_rerank
+Langchain for LLM App Development�
+
+
+Slide 159:
+Langchain for LLM App Development�
+LLMs have a limited context length
+Langchain with Documents
+Embeddings: capture content and meaning�
+Vector DBs
+Chunking methods for large docs
+Map_reduce
+Refine
+Map_rerank
+Notebook demo: Chat with Data using LangChain
+Langchain for LLM App Development�
+
+
