@@ -33,6 +33,7 @@ def setup_qa_chain(pdf_doc, openai_api_key):
     vectordb = Chroma.from_documents(all_splits, embedding=embedding,\
             persist_directory=persist_directory)
     vectordb.persist()
+    # use ConversationalRetrievalChain
     pdf_qa = ChatVectorDBChain.from_llm(ChatOpenAI(temperature=0,\
     model_name="gpt-4"), vectordb)
     return pdf_qa
