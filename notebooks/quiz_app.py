@@ -1,5 +1,5 @@
-from langchain.prompts import PromptTemplate
-from langchain.chat_models import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
 from langchain.schema import StrOutputParser
 import streamlit as st
 import os
@@ -63,7 +63,7 @@ Example:
         1. A binary search tree is a data structure that is used to store data in a sorted manner.
         2. Binary search trees are implemented using linked lists.
 """
-    prompt = PromptTemplate.from_template(template)
+    prompt = ChatPromptTemplate.from_template(template)
     prompt.format(num_questions=3, quiz_type="multiple-choice", quiz_context="Data Structures in Python Programming")
     
     return prompt
