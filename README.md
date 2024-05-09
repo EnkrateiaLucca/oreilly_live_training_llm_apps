@@ -5,9 +5,9 @@
 **Conda**
 
 - Install [anaconda](https://www.anaconda.com/download)
-- This repo was tested on a Mac with python=3.10.
-- Create an environment: `conda create -n oreilly-env python=3.10`
-- Activate your environment with: `conda activate oreilly-env`
+- This repo was tested on a Mac with python=3.11.
+- Create an environment: `conda create -n oreilly-chatgpt-apps python=3.11`
+- Activate your environment with: `conda activate oreilly-chatgpt-apps`
 - Install requirements with: `pip install -r requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
@@ -15,24 +15,24 @@
 
 
 1. **Create a Virtual Environment:**
-    Navigate to your project directory. Make sure you hvae python3.10 installed! 
+    Navigate to your project directory. Make sure you have python 3.11 installed! 
     If using Python 3's built-in `venv`:
     ```bash
-    python -m venv oreilly-env
+    python -m venv oreilly-chatgpt-apps
     ```
     If you're using `virtualenv`:
     ```bash
-    virtualenv oreilly-env
+    virtualenv oreilly-chatgpt-apps
     ```
 
 2. **Activate the Virtual Environment:**
     - **On Windows:**
       ```bash
-      .\oreilly-env\Scripts\activate
+      .\oreilly-chatgpt-apps\Scripts\activate
       ```
     - **On macOS and Linux:**
       ```bash
-      source oreilly-env/bin/activate
+      source oreilly-chatgpt-apps/bin/activate
       ```
 
 3. **Install Dependencies from `requirements.txt`:**
@@ -55,7 +55,7 @@ deactivate
 ## To use this Environment with Jupyter Notebooks:
 
 - ```pip install jupyter```
-- ```python3 -m ipykernel install --user --name=oreilly-env```
+- ```python3 -m ipykernel install --user --name=oreilly-chatgpt-apps```
 
 ## Notebooks
 
