@@ -91,7 +91,7 @@ Here are the notebooks available in the `notebooks/` folder:
 
 8. [Notes Summarizer App](notebooks/6-notes_summarizer_app.ipynb)
    
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/6-notes_summarizer_app.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/6.0-notes_summarizer_app.ipynb)
 
 9. [General Intro to LLMs](notebooks/general-intro-to-llms.ipynb)
    
