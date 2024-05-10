@@ -14,3 +14,5 @@ playwright
 matplotlib
 streamlit
 python-dotenv
+unstructured
+pysqlite3
