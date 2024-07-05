@@ -21,7 +21,7 @@
       class: center, middle
       # Building Text-Based Applications with the ChatGPT API & LangChain
       ### Lucas Soares
-      #### 10-05-2024
+      #### 07-05-2024
 
       ---
 
@@ -95,38 +95,15 @@
       - And so much more from Q&A over PDFs to personalized tutoring. 
 
       ---
+      class: center, middle
 
-      # Transformers
-      <span style="color: grey">(Super quickly) </span>
+      # Behind all of these applications is a powerful architecture: __Transformers__
 
-      --
+      ---
 
-      They generate text one word at a time. For example:
-
-      --
-
-      1. Input: "I love eating ________"
-
-      --
-
-      2. <p>Tokenize: <span style="color: purple;">I</span> <span style="color: green;">love</span> <span style="color: orange;">eating</span></p>
-
-      --
-
-      3. Embedding: [0.78, 1.45, 0.35 .....]
-
-      --
-
-      4. Positional encoding: <p><span style="color: purple;">1. I</span> <span style="color: green;">2. love</span> <span style="color: orange;">3. eating</span></p>
-      
-      --
-
-      5.  <div>Attention: Understands context &rarr; "I" (Lucas) and "love": things that Lucas loves. Cross references that against things that "Lucas" eats leading to ... &rarr; "PANCAKES!!!"</div>
-
-      --
-
-        <img src="../notebooks/assets-resources/pancakes-delicious.jpg" width="110px;">
-
+      <div style="display: flex; justify-content: center;">
+          <img src="../notebooks/assets-resources/transformer-process.png" width="600px">
+      </div>
         
       ---
 
@@ -156,8 +133,6 @@
       - Scalability
       
         - LLMs demonstrate excellent scalability to very large capacity networks and huge datasets.
-
-      ---
 
       ---
       
@@ -281,6 +256,13 @@
 
       <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.003.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
 
+      ---
+      # A Prompt Constrains the Space of Potential Outputs
+
+      <div style="display: flex; justify-content: center;">
+        <img src="../notebooks/assets-resources/prompt-constrains-space.png" width="600px">
+      </div>
+      
       ---
       # Prompt Basics
 
@@ -465,35 +447,15 @@
       </h1>
 
       ---
-        
-      # What is Langchain?
 
-      <img src="../notebooks/assets-resources/langchain-icon.svg" alt="Langchain Icon" style="width: 100px; margin-left: 50px;"/>
-
-      --
-
-      - __LangChain is a framework that facilitates creation of LLM-based applications__
-
-      --
-
-      - __Main features__:
-
-      --
-
-        - components
-
-      --
-
-        - off-the-shelf-chains
-
-      --
-
-      - LangChain gives you building blocks for creating powerful LLM applications
+      <div style="display: flex; justify-content: center;">
+        <img src="../notebooks/assets-resources/what-is-langchain.png" width="800px">
+      </div>
 
       <p style="font-size: 14px; margin-top: 10px;">
         <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
       </p>
-
+      
       ---
 
       # LangChain Components
@@ -908,7 +870,6 @@
       6. [ReACT Paper](https://arxiv.org/abs/2210.03629)
 
       ---
-            
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
