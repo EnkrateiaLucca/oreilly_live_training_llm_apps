@@ -8,6 +8,7 @@ aiohttp==3.9.5
     # via
     #   instructor
     #   langchain
+    #   langchain-community
 aiosignal==1.3.1
     # via aiohttp
 altair==5.3.0
@@ -83,6 +84,7 @@ cycler==0.12.1
     # via matplotlib
 dataclasses-json==0.6.7
     # via
+    #   langchain-community
     #   unstructured
     #   unstructured-client
 debugpy==1.8.1
@@ -211,10 +213,15 @@ kiwisolver==1.4.5
 kubernetes==30.1.0
     # via chromadb
 langchain==0.2.7
+    # via
+    #   -r ./requirements/requirements.in
+    #   langchain-community
+langchain-community==0.2.7
     # via -r ./requirements/requirements.in
 langchain-core==0.2.12
     # via
     #   langchain
+    #   langchain-community
     #   langchain-openai
     #   langchain-text-splitters
 langchain-openai==0.1.14
@@ -228,6 +235,7 @@ langdetect==1.0.9
 langsmith==0.1.84
     # via
     #   langchain
+    #   langchain-community
     #   langchain-core
 lxml==5.2.2
     # via unstructured
@@ -274,6 +282,7 @@ numpy==1.26.4
     #   chromadb
     #   contourpy
     #   langchain
+    #   langchain-community
     #   matplotlib
     #   onnxruntime
     #   pandas
@@ -456,6 +465,7 @@ pyyaml==6.0.1
     #   huggingface-hub
     #   kubernetes
     #   langchain
+    #   langchain-community
     #   langchain-core
     #   uvicorn
 pyzmq==26.0.3
@@ -479,6 +489,7 @@ requests==2.32.3
     #   huggingface-hub
     #   kubernetes
     #   langchain
+    #   langchain-community
     #   langchainhub
     #   langsmith
     #   posthog
@@ -525,7 +536,9 @@ sniffio==1.3.1
 soupsieve==2.5
     # via beautifulsoup4
 sqlalchemy==2.0.31
-    # via langchain
+    # via
+    #   langchain
+    #   langchain-community
 stack-data==0.6.3
     # via ipython
 starlette==0.37.2
@@ -541,6 +554,7 @@ tenacity==8.5.0
     #   chromadb
     #   instructor
     #   langchain
+    #   langchain-community
     #   langchain-core
     #   streamlit
 tiktoken==0.7.0

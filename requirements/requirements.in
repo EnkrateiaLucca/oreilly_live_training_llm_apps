@@ -2,6 +2,7 @@ ipykernel
 openai
 langchain
 langchain-openai
+langchain-community
 langchainhub
 pydantic
 instructor
