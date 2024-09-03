@@ -1,4 +1,3 @@
-from langchain.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.pydantic_v1 import BaseModel, Field
 from quiz_templates import create_multiple_choice_template, create_true_false_template, create_open_ended_template
@@ -51,7 +50,7 @@ def main():
         os.environ["OPENAI_API_KEY"] = openai_api_key
     else:
         st.error("Please enter your OpenAI API key")
-    llm = ChatOpenAI(model="gpt-4-0125-preview",temperature=0.0)
+    llm = ChatOpenAI(model="gpt-4o-mini",temperature=0.0)
 
     context = st.text_area("Enter the concept/context for the quiz", value=st.session_state.get('context', ''))
     num_questions = st.number_input("Enter the number of questions", min_value=1, max_value=10, value=st.session_state.get('num_questions', 3))

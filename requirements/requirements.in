@@ -4,10 +4,11 @@ langchain>=0.2.14
 langchain-cli
 langserve
 langchain-openai
+langchain-ollama
 langchain-community
 langchain_pinecone
 langchainhub
-pydantic
+pydantic<=1.9
 instructor
 pypdf
 chromadb

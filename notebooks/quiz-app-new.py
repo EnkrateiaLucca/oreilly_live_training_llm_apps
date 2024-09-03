@@ -122,7 +122,7 @@ def main():
         return
 
     prompt_template = create_the_quiz_prompt_template()
-    llm = ChatOpenAI(temperature=0.0, model="gpt-4")
+    llm = ChatOpenAI(temperature=0.0, model="gpt-4o")
     chain = create_quiz_chain(prompt_template, llm, openai_api_key)
 
     context = st.text_area("Enter the concept/context for the quiz")
