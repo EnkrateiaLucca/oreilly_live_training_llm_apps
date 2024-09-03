@@ -190,7 +190,9 @@ jinja2==3.1.4
     #   altair
     #   pydeck
 jiter==0.4.2
-    # via instructor
+    # via
+    #   instructor
+    #   openai
 joblib==1.4.2
     # via nltk
 jsonpatch==1.33
@@ -215,7 +217,7 @@ kiwisolver==1.4.5
     # via matplotlib
 kubernetes==30.1.0
     # via chromadb
-langchain==0.2.7
+langchain==0.2.15
     # via
     #   -r ./requirements/requirements.in
     #   langchain-community
@@ -223,7 +225,7 @@ langchain-cli==0.0.25
     # via -r ./requirements/requirements.in
 langchain-community==0.2.7
     # via -r ./requirements/requirements.in
-langchain-core==0.2.12
+langchain-core==0.2.37
     # via
     #   langchain
     #   langchain-community
@@ -312,7 +314,7 @@ oauthlib==3.2.2
     #   requests-oauthlib
 onnxruntime==1.18.1
     # via chromadb
-openai==1.35.12
+openai==1.43.0
     # via
     #   -r ./requirements/requirements.in
     #   instructor
@@ -628,6 +630,7 @@ typing-extensions==4.11.0
     #   fastapi
     #   huggingface-hub
     #   ipython
+    #   langchain-core
     #   openai
     #   opentelemetry-sdk
     #   pinecone-client
