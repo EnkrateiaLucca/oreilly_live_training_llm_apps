@@ -1,26 +1,30 @@
+import os
+import sys
+import streamlit as st
 from langchain.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.schema import StrOutputParser
-import streamlit as st
-import os
+
+# Set the default encoding to utf-8
+os.environ['PYTHONIOENCODING'] = 'utf-8'
+sys.stdout.reconfigure(encoding='utf-8')
+sys.stderr.reconfigure(encoding='utf-8')
 
 def create_the_quiz_prompt_template():
-    """Create the prompt template for the quiz app."""
-    
     template = """
-You are an expert quiz maker for technical fields. Let's think step by step and
-create a quiz with {num_questions} {quiz_type} questions about the following concept/content: {quiz_context}.
+    You are an expert quiz maker for technical fields. Let's think step by step and
+    create a quiz with {num_questions} {quiz_type} questions about the following concept/content: {quiz_context}.
 
-The format of the quiz could be one of the following:
-- Multiple-choice: 
-- Questions:
-    <Question1>: <a. Answer 1>, <b. Answer 2>, <c. Answer 3>, <d. Answer 4>
-    <Question2>: <a. Answer 1>, <b. Answer 2>, <c. Answer 3>, <d. Answer 4>
-    ....
-- Answers:
-    <Answer1>: <a|b|c|d>
-    <Answer2>: <a|b|c|d>
-    ....
+    The format of the quiz could be one of the following:
+    - Multiple-choice: 
+    - Questions:
+        <Question1>: <a. Answer 1>, <b. Answer 2>, <c. Answer 3>, <d. Answer 4>
+        <Question2>: <a. Answer 1>, <b. Answer 2>, <c. Answer 3>, <d. Answer 4>
+        ....
+    - Answers:
+        <Answer1>: <a|b|c|d>
+        <Answer2>: <a|b|c|d>
+        ....
     Example:
     - Questions:
     - 1. What is the time complexity of a binary search tree?
@@ -30,15 +34,15 @@ The format of the quiz could be one of the following:
         d. O(1)
     - Answers: 
         1. b
-- True-false:
-    - Questions:
-        <Question1>: <True|False>
-        <Question2>: <True|False>
-        .....
-    - Answers:
-        <Answer1>: <True|False>
-        <Answer2>: <True|False>
-        .....
+    - True-false:
+        - Questions:
+            <Question1>: <True|False>
+            <Question2>: <True|False>
+            .....
+        - Answers:
+            <Answer1>: <True|False>
+            <Answer2>: <True|False>
+            .....
     Example:
     - Questions:
         - 1. What is a binary search tree?
@@ -46,35 +50,43 @@ The format of the quiz could be one of the following:
     - Answers:
         - 1. True
         - 2. False
-- Open-ended:
-- Questions:
-    <Question1>: 
-    <Question2>:
-- Answers:    
-    <Answer1>:
-    <Answer2>:
-Example:
+    - Open-ended:
+    - Questions:
+        <Question1>:
+        <Question2>:
+    - Answers:    
+        <Answer1>:
+        <Answer2>:
+    Example:
     Questions:
-    - 1. What is a binary search tree?
-    - 2. How are binary search trees implemented?
-    
-    - Answers: 
-        1. A binary search tree is a data structure that is used to store data in a sorted manner.
-        2. Binary search trees are implemented using linked lists.
-"""
+        - 1. What is a binary search tree?
+        - 2. How are binary search trees implemented?
+        
+        - Answers: 
+            1. A binary search tree is a data structure that is used to store data in a sorted manner.
+            2. Binary search trees are implemented using linked lists.
+    """
     prompt = ChatPromptTemplate.from_template(template)
     prompt.format(num_questions=3, quiz_type="multiple-choice", quiz_context="Data Structures in Python Programming")
     
     return prompt
 
 
-def create_quiz_chain(prompt_template,llm, openai_api_key):
-    """Creates the chain for the quiz app."""
+def create_quiz_chain(prompt_template, llm, openai_api_key):
     return prompt_template | llm |  StrOutputParser()
 
 def split_questions_answers(quiz_response):
     parts = quiz_response.split("- Answers:")
-    questions_part = parts[0].split("- Questions:")[1]
+    if len(parts) < 2:
+        print("Error: quiz_response does not contain '- Answers:' marker.")
+        return [], {}
+    
+    questions_parts = parts[0].split("- Questions:")
+    if len(questions_parts) < 2:
+        print("Error: quiz_response does not contain '- Questions:' marker.")
+        return [], {}
+    
+    questions_part = questions_parts[1]
     answers_part = parts[1]
     
     questions = [q.strip() for q in questions_part.split("\n") if q.strip() != ""]
@@ -82,11 +94,10 @@ def split_questions_answers(quiz_response):
 
     structured_questions = []
     for question in questions:
-        # Check if the question contains a colon and split accordingly
         if ':' in question:
             question_parts = question.split(":")
             q_text = question_parts[0].strip()
-            q_options = ':'.join(question_parts[1:]).strip()  # Join back in case options contain colons
+            q_options = ':'.join(question_parts[1:]).strip()
             structured_questions.append({"question": q_text, "options": q_options})
         else:
             print(f"Skipping malformed question: {question}")
@@ -99,7 +110,6 @@ def split_questions_answers(quiz_response):
     return structured_questions, structured_answers
 
 
-
 def main():
     st.title("Quiz App")
     st.write("This app generates a quiz based on a given context.")
@@ -109,10 +119,10 @@ def main():
         os.environ["OPENAI_API_KEY"] = openai_api_key
     else:
         st.error("Please enter your OpenAI API key")
-        return  # Stop execution if no API key is entered
+        return
 
     prompt_template = create_the_quiz_prompt_template()
-    llm = ChatOpenAI(temperature=0.0)
+    llm = ChatOpenAI(temperature=0.0, model="gpt-4")
     chain = create_quiz_chain(prompt_template, llm, openai_api_key)
 
     context = st.text_area("Enter the concept/context for the quiz")
@@ -123,20 +133,18 @@ def main():
         quiz_response = chain.invoke({"quiz_type": quiz_type, "num_questions": num_questions, "quiz_context": context})
         structured_questions, structured_answers = split_questions_answers(quiz_response)
 
-        # Initialize a place to store user answers
         user_answers = {}
 
-        # Display questions with checkboxes for multiple-choice questions
         if quiz_type == "multiple-choice":
             for question in structured_questions:
                 q_num = question["question"].split()[0]
                 st.write(f'{question["question"]}:')
                 for option in question["options"].split(","):
-                    option_key = f"{q_num}_{option.strip()[0]}"  # Example: "1_a"
+                    option_key = f"{q_num}_{option.strip()[0]}"
                     user_answers[option_key] = st.checkbox(option.strip(), key=option_key)
 
         st.session_state["user_answers"] = user_answers
-        st.session_state["structured_questions"] = structured_questions  # Save structured_questions in session_state
+        st.session_state["structured_questions"] = structured_questions
         st.session_state["correct_answers"] = structured_answers
         
     if st.button("Check Answers"):

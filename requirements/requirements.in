@@ -1,8 +1,11 @@
 ipykernel
 openai
 langchain
+langchain-cli
+langserve
 langchain-openai
 langchain-community
+langchain_pinecone
 langchainhub
 pydantic
 instructor
