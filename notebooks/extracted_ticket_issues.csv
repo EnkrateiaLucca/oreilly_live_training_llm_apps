@@ -1,0 +1,6 @@
+customer_name,issue_description,priority
+Jane Doe,Customer was charged twice for the same transaction.,High
+John Smith,"Customer unable to log into their account, facing a password reset issue.",Medium
+Alice Johnson,Customer wants more information about product specifications.,Low
+Bob Brown,"Customer has not received the order yet, tracking information shows a delay.",High
+Michael Lee,Customer wants to return a product and needs assistance with the return label.,Medium
