@@ -46,22 +46,48 @@ def translate_text(input_text, target_language, openai_api_key):
     return translated_text
 
 def main():
+    st.set_page_config(layout="wide")  # Make the app full-width
     openai_api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
-    st.title("Simple Translation App")
+    st.title("🌎 Multi-Language Translation Hub")
 
-    # User inputs
+    # User input
     input_text = st.text_area("Enter text to translate", height=150)
-    target_language = st.selectbox("Select target language", list(languages.keys()))
 
-    # Translate button
-    if st.button("Translate"):
-        # Perform the translation
-        st.session_state["translated_text"] = translate_text(input_text, languages[target_language],openai_api_key)
+    # Create a button to translate to all languages
+    if st.button("Translate to All Languages 🚀"):
+        # Create two columns with 3 translations each
+        col1, col2 = st.columns(2)
         
-        # Display the translated text
-    
-    if st.session_state["translated_text"]!="":
-        st.write(st.session_state["translated_text"])
+        # Dictionary to store translations
+        translations = {}
+        
+        with st.spinner('Translating to all languages...'):
+            # Generate all translations
+            for lang_name, lang_code in languages.items():
+                translations[lang_name] = translate_text(input_text, lang_code, openai_api_key)
+        
+        # Display translations in columns
+        with col1:
+            for lang in list(languages.keys())[:3]:
+                with st.expander(f"🔤 {lang}", expanded=True):
+                    st.text_area(
+                        label="Translation",
+                        value=translations.get(lang, ""),
+                        height=150,
+                        key=f"translation_{lang}",
+                        disabled=True
+                    )
+
+        with col2:
+            for lang in list(languages.keys())[3:]:
+                with st.expander(f"🔤 {lang}", expanded=True):
+                    st.text_area(
+                        label="Translation",
+                        value=translations.get(lang, ""),
+                        height=150,
+                        key=f"translation_{lang}",
+                        disabled=True
+                    )
 
 if __name__ == "__main__":
     main()
