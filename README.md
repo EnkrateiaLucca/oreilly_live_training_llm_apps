@@ -8,7 +8,7 @@
 - This repo was tested on a Mac with python=3.11.
 - Create an environment: `conda create -n oreilly-chatgpt-apps python=3.11`
 - Activate your environment with: `conda activate oreilly-chatgpt-apps`
-- Install requirements with: `pip install -r requirements.txt`
+- Install requirements with: `pip install -r requirements/requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
 **Pip**
