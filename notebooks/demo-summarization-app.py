@@ -4,6 +4,7 @@ import openai
 from openai import OpenAI
 import numpy as np
 import plotly.graph_objects as go
+import os
 
 MODEL = "gpt-4o-mini"
 
@@ -22,7 +23,11 @@ st.title("Multi-Level PDF Summarizer")
 # Initialize OpenAI client
 @st.cache_resource
 def load_client():
-    return OpenAI(api_key=st.secrets["openai"]["OPENAI_API_KEY"])
+    api_key = os.environ.get("OPENAI_API_KEY") or st.sidebar.text_input("Enter your OpenAI API key", type="password")
+    if not api_key:
+        st.error("Please enter your OpenAI API key")
+        st.stop()
+    return OpenAI(api_key=api_key)
 
 client = load_client()
 
