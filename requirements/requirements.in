@@ -22,3 +22,5 @@ python-dotenv
 unstructured
 pysqlite3
 wget
+plotly
+

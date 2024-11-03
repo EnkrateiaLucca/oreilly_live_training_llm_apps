@@ -394,6 +394,7 @@ packaging==24.1
     #   marshmallow
     #   matplotlib
     #   onnxruntime
+    #   plotly
     #   streamlit
     #   unstructured-client
 pandas==2.2.3
@@ -417,6 +418,8 @@ pinecone-plugin-interface==0.0.7
 platformdirs==4.3.6
     # via jupyter-core
 playwright==1.48.0
+    # via -r ./requirements/requirements.in
+plotly==5.24.1
     # via -r ./requirements/requirements.in
 posthog==3.7.0
     # via chromadb
@@ -613,6 +616,7 @@ tenacity==9.0.0
     #   langchain
     #   langchain-community
     #   langchain-core
+    #   plotly
     #   streamlit
 tiktoken==0.8.0
     # via langchain-openai
