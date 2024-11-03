@@ -1,5 +1,5 @@
 .env
 *.key
 .streamlit/
-notebooks/.streamlit/
+**/.streamlit/
 *.toml
