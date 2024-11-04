@@ -57,9 +57,6 @@ deactivate
 - ```pip install jupyter```
 - ```python3 -m ipykernel install --user --name=oreilly-chatgpt-apps```
 
-## Notebooks
-
-Here are the notebooks available in the `notebooks/` folder:
 
 ## Notebooks
 
