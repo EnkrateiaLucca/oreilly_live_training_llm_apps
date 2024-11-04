@@ -61,46 +61,62 @@ deactivate
 
 Here are the notebooks available in the `notebooks/` folder:
 
+## Notebooks
+
+Here are the notebooks available in the `notebooks/` folder:
+
 1. [Intro to ChatGPT API & Prompt Basics](notebooks/1.0-Intro-ChatGPT-API-prompt-basics.ipynb)
    
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/1.0-Intro-ChatGPT-API-prompt-basics.ipynb)
 
-2. [Applying Prompt Engineering Strategies](notebooks/2.0-applying-prompt-engineering-strategies.ipynb)
+2. [Intro to OpenAI Function Calling](notebooks/1.2-intro-openai-function-calling.ipynb)
+   
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/1.2-intro-openai-function-calling.ipynb)
+
+3. [Extraction Use Case](notebooks/1.3-extraction-use-case.ipynb)
+   
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/1.3-extraction-use-case.ipynb)
+
+4. [Applying Prompt Engineering Strategies](notebooks/2.0-applying-prompt-engineering-strategies.ipynb)
    
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/2.0-applying-prompt-engineering-strategies.ipynb)
 
-3. [Prompt Engineering Guide](notebooks/2.1-prompt-engineering-guide.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/2.1-prompt-engineering-guide.ipynb)
-
-4. [Fine-tuning ChatGPT API](notebooks/3.0-fine-tuning-chatgpt-api.ipynb)
+5. [Fine-tuning ChatGPT API](notebooks/3.0-fine-tuning-chatgpt-api.ipynb)
    
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/3.0-fine-tuning-chatgpt-api.ipynb)
 
-5. [Intro to LangChain](notebooks/4.0-intro-to-langchain.ipynb)
+6. [Intro to LangChain](notebooks/4.0-intro-to-langchain.ipynb)
    
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.0-intro-to-langchain.ipynb)
 
-6. [Q&A with LangChain](notebooks/4.1-qa-with-langchain.ipynb)
+7. [Q&A with LangChain](notebooks/4.1-qa-with-langchain.ipynb)
    
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.1-qa-with-langchain.ipynb)
 
-7. [Quiz Generator App](notebooks/5-quiz_generator_app.ipynb)
+8. [Quiz PDF with LangChain](notebooks/4.2-quiz-pdf.ipynb)
    
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/5-quiz_generator_app.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.2-quiz-pdf.ipynb)
 
-8. [Notes Summarizer App](notebooks/6-notes_summarizer_app.ipynb)
+9. [LangChain Deploy Recipe Walkthrough](notebooks/4.3-langchain-deploy-recipe-walkthrough.ipynb)
    
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/6.0-notes_summarizer_app.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.3-langchain-deploy-recipe-walkthrough.ipynb)
 
-9. [General Intro to LLMs](notebooks/general-intro-to-llms.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/general-intro-to-llms.ipynb)
+10. [LangChain Adept Demo](notebooks/4.4-langchain-adept-demo.ipynb)
+    
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.4-langchain-adept-demo.ipynb)
 
-10. [Prompt Engineering Techniques: Knowledge Generation](notebooks/prompt-engineering-techniques-knowledge-generation.ipynb)
+11. [Quiz Generator App](notebooks/5.0-quiz_generator_app.ipynb)
+    
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/5.0-quiz_generator_app.ipynb)
+
+12. [General Intro to LLMs](notebooks/general-intro-to-llms.ipynb)
+    
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/general-intro-to-llms.ipynb)
+
+13. [Prompt Engineering Techniques: Knowledge Generation](notebooks/prompt-engineering-techniques-knowledge-generation.ipynb)
     
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/prompt-engineering-techniques-knowledge-generation.ipynb)
 
-11. [Prompt Engineering Techniques](notebooks/prompt-engineering-techniques.ipynb)
+14. [Prompt Engineering Techniques](notebooks/prompt-engineering-techniques.ipynb)
     
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/prompt-engineering-techniques.ipynb)
