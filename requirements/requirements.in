@@ -8,6 +8,7 @@ langchain-ollama
 langchain-community
 langchain_pinecone
 langchainhub
+langchain_chroma
 pydantic
 instructor
 pypdf

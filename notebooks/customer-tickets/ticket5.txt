@@ -1,0 +1,2 @@
+Ticket 5:
+The app continuously crashes whenever I try to open it on my smartphone. I've tried uninstalling and reinstalling, but the problem persists, making it impossible for me to use the service.

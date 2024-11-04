@@ -1,0 +1,2 @@
+Ticket 3:
+I am unable to access my account after attempting to reset my password. Each time I follow the reset instructions, I receive an error message that says my email is not recognized in your system.
