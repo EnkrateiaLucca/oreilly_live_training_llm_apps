@@ -13,7 +13,9 @@ languages = {
     "German": "de",
     "Italian": "it",
     "Japanese": "ja",
-    "Portuguese": "pt"
+    "Portuguese": "pt",
+    "Hindi": "hi",
+    "Chinese": "zh"
 }
 
 def translate_text(input_text, target_language, openai_api_key):
@@ -54,7 +56,7 @@ def main():
     input_text = st.text_area("Enter text to translate", height=150)
 
     # Create a button to translate to all languages
-    if st.button("Translate to All Languages 🚀"):
+    if st.button("Translate to Multiple Languages 🚀"):
         # Create two columns with 3 translations each
         col1, col2 = st.columns(2)
         
@@ -68,7 +70,7 @@ def main():
         
         # Display translations in columns
         with col1:
-            for lang in list(languages.keys())[:3]:
+            for lang in list(languages.keys())[:4]:
                 with st.expander(f"🔤 {lang}", expanded=True):
                     st.text_area(
                         label="Translation",
@@ -79,7 +81,7 @@ def main():
                     )
 
         with col2:
-            for lang in list(languages.keys())[3:]:
+            for lang in list(languages.keys())[4:]:
                 with st.expander(f"🔤 {lang}", expanded=True):
                     st.text_area(
                         label="Translation",

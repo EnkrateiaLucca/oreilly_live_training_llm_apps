@@ -41,13 +41,13 @@ def extract_text_from_pdf(pdf_file):
 
 
 
-def generate_summaries(text, summary_type, num_levels=10):
+def generate_summaries(text, summary_type, num_levels=5):
     target_lengths = np.geomspace(50, len(text.split()), num=num_levels).astype(int)
     summaries = []
     
     system_prompts = {
-        "Narrative": "Generate a concise narrative summary that begins with a basic overview. For each subsequent section, provide a more detailed narrative summary, maintaining flow and including critical information.",
         "Bullet Points": "Produce a basic bullet-point summary of main ideas. For each section, expand with detailed bullet points highlighting specific information. Begin each main point with a • symbol, ensuring consistency across sections.",
+        "Narrative": "Generate a concise narrative summary that begins with a basic overview. For each subsequent section, provide a more detailed narrative summary, maintaining flow and including critical information.",
         "Structure": "Start with a high-level structured summary, introducing the main sections (e.g., Introduction, Main Points, Conclusion). For each section, develop a detailed summary under clear headers, preserving structured consistency.",
         "Key Concepts": "Begin with a compressed overview of core concepts. For each section, elaborate on the main concepts and their relationships, sorted by importance within each section. Ensure organized conceptual clarity across levels.",
         "Executive": "Create a high-level executive summary that includes context and key findings. For each section, provide a more detailed executive-style summary, covering additional insights and, when relevant, recommendations, maintaining clarity throughout."
@@ -85,7 +85,7 @@ if uploaded_file is not None:
     
     if summary_type not in st.session_state.summaries_dict:
         with st.spinner(f'Generating {summary_type.lower()} summaries at different levels...'):
-            num_levels = st.sidebar.slider("Number of Summary Levels", 5, 20, 10)
+            num_levels = st.sidebar.slider("Number of Summary Levels", 5, 10, 5)
             st.session_state.summaries_dict[summary_type] = generate_summaries(
                 st.session_state.text,
                 summary_type,
@@ -93,13 +93,12 @@ if uploaded_file is not None:
             )
     
     summaries = st.session_state.summaries_dict[summary_type]
-    num_levels = len(summaries)
     
     col1, col2 = st.columns([1, 3])
     
     with col1:
         st.subheader("Summary Level")
-        level = st.slider("Adjust summary detail level", 1, num_levels, num_levels//2)
+        level = st.slider("Adjust summary detail level", 1, len(summaries), len(summaries)//2)
         
         st.write("Summary Statistics:")
         original_length = len(st.session_state.text.split())
