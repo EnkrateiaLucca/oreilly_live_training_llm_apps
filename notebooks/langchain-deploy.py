@@ -5,6 +5,12 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langserve import add_routes
+import os
+
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+# os.environ["LANGCHAIN_API_KEY"] = "YOUR API KEY"
+os.environ["LANGCHAIN_PROJECT"] = "langchain-chatgpt-course-test"
 
 # 1. Create prompt template
 system_template = "Translate the following into {language}:"
@@ -24,18 +30,9 @@ chain = prompt_template | model | parser
 
 
 # 4. App definition
-app = FastAPI(
-  title="LangChain Server",
-  version="1.0",
-  description="A simple API server using LangChain's Runnable interfaces",
-)
-
+app = FastAPI(title="LangChain Server",version="1.0",description="A simple API server using LangChain's Runnable interfaces",)
 # 5. Adding chain route
-add_routes(
-    app,
-    chain,
-    path="/chain",
-)
+add_routes(app,chain,path="/chain",)
 
 if __name__ == "__main__":
     import uvicorn

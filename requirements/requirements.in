@@ -1,14 +1,15 @@
 ipykernel
 openai
 langchain>=0.3.0
+langsmith
 langchain-cli
 langserve
 langchain-openai
 langchain-ollama
 langchain-community
-langchain_pinecone
+langchain-pinecone
 langchainhub
-langchain_chroma
+langchain-chroma
 pydantic
 instructor
 pypdf
