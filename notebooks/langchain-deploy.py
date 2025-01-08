@@ -30,7 +30,9 @@ chain = prompt_template | model | parser
 
 
 # 4. App definition
-app = FastAPI(title="LangChain Server",version="1.0",description="A simple API server using LangChain's Runnable interfaces",)
+app = FastAPI(title="LangChain Server",
+              version="1.0",
+              description="A simple API server using LangChain's Runnable interfaces for translation.",)
 # 5. Adding chain route
 add_routes(app,chain,path="/chain",)
 
