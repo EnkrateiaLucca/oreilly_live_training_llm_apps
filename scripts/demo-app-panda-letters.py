@@ -61,7 +61,7 @@ cover_image_character = st.sidebar.selectbox("Select your prefered character", [
 def get_character_info(character: str) -> None:
     """Display the image for the selected character."""
     if character == "Panda Warrior":
-        image_path = "./assets-resources/panda_letter.png"
+        image_path = "../notebooks/assets-resources/panda_letter.png"
     else:
         st.write(f"Generating cover image for {character}...")
         prompt = f"Generate a creative outside the box like cover image for this character of a story: {character}."
