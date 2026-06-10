@@ -1,137 +1,87 @@
-# O'Reilly Live Trainining - Building Text Based Applications with the OpenAI Responses API + LangChain v1
+# O'Reilly Live Training — Building LLM Apps with the OpenAI Responses API + LangChain v1
 
 ## Setup
 
-**Conda**
+**Requires Python 3.11+** (tested on 3.12).
 
-- Install [anaconda](https://www.anaconda.com/download)
-- This repo was tested on a Mac with python=3.11.
-- Create an environment: `conda create -n oreilly-chatgpt-apps python=3.11`
-- Activate your environment with: `conda activate oreilly-chatgpt-apps`
-- Install requirements with: `pip install -r requirements/requirements.txt`
-- Setup your openai [API key](https://platform.openai.com/)
+### Option A — pip + venv
 
-**Pip**
-
-
-1. **Create a Virtual Environment:**
-    Navigate to your project directory. Make sure you have python 3.11 installed! 
-    If using Python 3's built-in `venv`:
+1. Create and activate a virtual environment:
     ```bash
     python -m venv oreilly-chatgpt-apps
+    source oreilly-chatgpt-apps/bin/activate   # macOS/Linux
+    .\oreilly-chatgpt-apps\Scripts\activate    # Windows
     ```
-    If you're using `virtualenv`:
+
+2. Install dependencies:
     ```bash
-    virtualenv oreilly-chatgpt-apps
+    pip install -r requirements/requirements.txt
     ```
 
-2. **Activate the Virtual Environment:**
-    - **On Windows:**
-      ```bash
-      .\oreilly-chatgpt-apps\Scripts\activate
-      ```
-    - **On macOS and Linux:**
-      ```bash
-      source oreilly-chatgpt-apps/bin/activate
-      ```
-
-3. **Install Dependencies from `requirements.txt`:**
+3. Register the kernel for Jupyter:
     ```bash
-    pip install python-dotenv
-    pip install -r requirements.txt
+    python -m ipykernel install --user --name=oreilly-chatgpt-apps
     ```
 
-4. Setup your openai [API key](https://platform.openai.com/)
+### Option B — conda
 
-Remember to deactivate the virtual environment once you're done by simply typing:
 ```bash
-deactivate
+conda create -n oreilly-chatgpt-apps python=3.12
+conda activate oreilly-chatgpt-apps
+pip install -r requirements/requirements.txt
+python -m ipykernel install --user --name=oreilly-chatgpt-apps
 ```
 
-## Setup your .env file
+## Environment Variables
 
-- Change the `.env.example` file to `.env` and add your OpenAI API key.
+Create a `.env` file in the project root with your API keys:
 
-## To use this Environment with Jupyter Notebooks:
+```bash
+OPENAI_API_KEY="sk-..."
 
-- ```pip install jupyter```
-- ```python3 -m ipykernel install --user --name=oreilly-chatgpt-apps```
+# Optional — enables LangSmith tracing (used in notebooks 9.0 and 8.5)
+LANGCHAIN_API_KEY="lsv2_pt_..."
+LANGCHAIN_TRACING_V2="true"
+LANGCHAIN_PROJECT="oreilly-llm-apps"
+LANGCHAIN_ENDPOINT="https://eu.api.smith.langchain.com"  # omit if using US region
+```
 
+Get your OpenAI key at [platform.openai.com](https://platform.openai.com/).  
+Get your LangSmith key at [smith.langchain.com](https://smith.langchain.com/) → Settings → API Keys.
 
 ## Notebooks
 
-Here are the notebooks available in the `notebooks/` folder:
+All notebooks are in the `notebooks/` folder and run on the **OpenAI Responses API** + **LangChain v1**.
 
-1. [Intro to ChatGPT API & Prompt Basics](notebooks/1.0-Intro-ChatGPT-API-prompt-basics.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/1.0-Intro-ChatGPT-API-prompt-basics.ipynb)
+| # | Notebook | Topic |
+|---|----------|-------|
+| 0 | [Setup & Quickstart](notebooks/0.0-setup-and-quickstart.ipynb) | Environment check, first API call |
+| 1 | [Responses API & Prompt Basics](notebooks/1.0-Intro-ChatGPT-API-prompt-basics.ipynb) | `client.responses.create`, prompt components, few-shot |
+| 2 | [Structured Outputs with Pydantic](notebooks/1.1-chatgpt-api-structured-outputs-pydantic.ipynb) | `responses.parse(text_format=...)`, Pydantic models, DataFrames |
+| 3 | [Function (Tool) Calling](notebooks/1.2-intro-openai-function-calling.ipynb) | Custom function tools, hosted `web_search` tool |
+| 4 | [Vision Capabilities](notebooks/1.4-vision-capabilities.ipynb) | Image inputs with the Responses API |
+| 5 | [Prompt Engineering Techniques](notebooks/2.0-prompt-eng-techniques.ipynb) | Zero-shot, few-shot, chain-of-thought, self-consistency |
+| 6 | [Fine-tuning](notebooks/3.0-fine-tuning-chatgpt-api.ipynb) | Fine-tuning a model via the OpenAI API |
+| 7 | [Intro to LangChain](notebooks/4.0-intro-to-langchain.ipynb) | Models, prompts, output parsers, LCEL chains, RAG |
+| 8 | [Q&A with LangChain](notebooks/4.1-qa-with-langchain.ipynb) | Document loaders, vector stores, retrieval chains |
+| 9 | [Simple RAG Tutorial](notebooks/4.2-simple_rag_tutorial.ipynb) | End-to-end RAG pipeline with Chroma |
+| 10 | [Quiz Generator App](notebooks/5.0-quiz_generator_app.ipynb) | Full app — generate quizzes from any text |
+| 11 | [Conversations API — Stateful Chat](notebooks/6.0-conversations-api-stateful-chat.ipynb) | `previous_response_id`, multi-turn without manual history |
+| 12 | [Agents with `create_agent`](notebooks/8.5-agent-with-create_agent.ipynb) | LangChain v1 `create_agent`, tool use, streaming |
+| 13 | [Tracing with LangSmith](notebooks/9.0-intro-langsmith.ipynb) | Auto-tracing chains and agents |
+| 14 | [LangGraph Multi-Step Agent](notebooks/9.5-langgraph-multi-step-agent.ipynb) | Stateful agent graphs with LangGraph |
 
-2. [Intro to OpenAI Function Calling](notebooks/1.2-intro-openai-function-calling.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/1.2-intro-openai-function-calling.ipynb)
+### Extra notebooks
 
-3. [Extraction Use Case](notebooks/1.3-extraction-use-case.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/1.3-extraction-use-case.ipynb)
+Additional reference material is in [`notebooks/extra-notebooks/`](notebooks/extra-notebooks/).
 
-4. [Applying Prompt Engineering Strategies](notebooks/2.0-applying-prompt-engineering-strategies.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/2.0-applying-prompt-engineering-strategies.ipynb)
+## Key API Changes (2026 refresh)
 
-5. [Fine-tuning ChatGPT API](notebooks/3.0-fine-tuning-chatgpt-api.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/3.0-fine-tuning-chatgpt-api.ipynb)
+This course was updated from the legacy Chat Completions API to the current stack:
 
-6. [Intro to LangChain](notebooks/4.0-intro-to-langchain.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.0-intro-to-langchain.ipynb)
-
-7. [Q&A with LangChain](notebooks/4.1-qa-with-langchain.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.1-qa-with-langchain.ipynb)
-
-8. [Quiz PDF with LangChain](notebooks/4.2-quiz-pdf.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.2-quiz-pdf.ipynb)
-
-9. [LangChain Deploy Recipe Walkthrough](notebooks/4.3-langchain-deploy-recipe-walkthrough.ipynb)
-   
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.3-langchain-deploy-recipe-walkthrough.ipynb)
-
-10. [LangChain Adept Demo](notebooks/4.4-langchain-adept-demo.ipynb)
-    
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/4.4-langchain-adept-demo.ipynb)
-
-11. [Quiz Generator App](notebooks/5.0-quiz_generator_app.ipynb)
-    
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/5.0-quiz_generator_app.ipynb)
-
-12. [General Intro to LLMs](notebooks/general-intro-to-llms.ipynb)
-    
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/general-intro-to-llms.ipynb)
-
-13. [Prompt Engineering Techniques: Knowledge Generation](notebooks/prompt-engineering-techniques-knowledge-generation.ipynb)
-    
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/prompt-engineering-techniques-knowledge-generation.ipynb)
-
-14. [Prompt Engineering Techniques](notebooks/prompt-engineering-techniques.ipynb)
-    
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/prompt-engineering-techniques.ipynb)
-
-15. [Setup and Quickstart](notebooks/0.0-setup-and-quickstart.ipynb)
-
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/0.0-setup-and-quickstart.ipynb)
-
-16. [Conversations API — Stateful Chat](notebooks/6.0-conversations-api-stateful-chat.ipynb)
-
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/6.0-conversations-api-stateful-chat.ipynb)
-
-17. [Agent with `create_agent`](notebooks/8.5-agent-with-create_agent.ipynb)
-
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/8.5-agent-with-create_agent.ipynb)
-
-18. [LangGraph Multi-Step Agent](notebooks/9.5-langgraph-multi-step-agent.ipynb)
-
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/9.5-langgraph-multi-step-agent.ipynb)
-
-> **Note:** `1.4-gpt4o-vision-capabilities` was renamed to [`1.4-vision-capabilities`](notebooks/1.4-vision-capabilities.ipynb).
+| Old | New |
+|-----|-----|
+| `client.chat.completions.create(messages=[...])` | `client.responses.create(input=..., instructions=...)` |
+| `response.choices[0].message.content` | `response.output_text` |
+| LangChain 0.x (`LLMChain`, `initialize_agent`) | LangChain v1 (`\|` LCEL, `create_agent`) |
+| Manual conversation history | `previous_response_id` for stateful turns |
