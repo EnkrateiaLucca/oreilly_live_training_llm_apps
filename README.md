@@ -1,4 +1,4 @@
-# O'Reilly Live Trainining - Building Text Based Applications with the ChatGPT API and Langchain
+# O'Reilly Live Trainining - Building Text Based Applications with the OpenAI Responses API + LangChain v1
 
 ## Setup
 
@@ -117,3 +117,21 @@ Here are the notebooks available in the `notebooks/` folder:
 14. [Prompt Engineering Techniques](notebooks/prompt-engineering-techniques.ipynb)
     
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/prompt-engineering-techniques.ipynb)
+
+15. [Setup and Quickstart](notebooks/0.0-setup-and-quickstart.ipynb)
+
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/0.0-setup-and-quickstart.ipynb)
+
+16. [Conversations API — Stateful Chat](notebooks/6.0-conversations-api-stateful-chat.ipynb)
+
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/6.0-conversations-api-stateful-chat.ipynb)
+
+17. [Agent with `create_agent`](notebooks/8.5-agent-with-create_agent.ipynb)
+
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/8.5-agent-with-create_agent.ipynb)
+
+18. [LangGraph Multi-Step Agent](notebooks/9.5-langgraph-multi-step-agent.ipynb)
+
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_llm_apps/blob/main/notebooks/9.5-langgraph-multi-step-agent.ipynb)
+
+> **Note:** `1.4-gpt4o-vision-capabilities` was renamed to [`1.4-vision-capabilities`](notebooks/1.4-vision-capabilities.ipynb).
