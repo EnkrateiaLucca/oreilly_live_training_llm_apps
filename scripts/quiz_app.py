@@ -22,7 +22,6 @@ class QuizOpenEnded(BaseModel):
     questions: List[str] = Field(description="The quiz questions")
     answers: List[str] = Field(description="The quiz answers")
 
-
 def create_quiz_chain(prompt_template,llm, pydantic_object_schema):
     """Creates the chain for the quiz app."""
     return prompt_template | llm.with_structured_output(pydantic_object_schema)
