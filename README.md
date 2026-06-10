@@ -59,17 +59,18 @@ All notebooks are in the `notebooks/` folder and run on the **OpenAI Responses A
 | 1 | [Responses API & Prompt Basics](notebooks/1.0-Intro-ChatGPT-API-prompt-basics.ipynb) | `client.responses.create`, prompt components, few-shot |
 | 2 | [Structured Outputs with Pydantic](notebooks/1.1-chatgpt-api-structured-outputs-pydantic.ipynb) | `responses.parse(text_format=...)`, Pydantic models, DataFrames |
 | 3 | [Function (Tool) Calling](notebooks/1.2-intro-openai-function-calling.ipynb) | Custom function tools, hosted `web_search` tool |
-| 4 | [Vision Capabilities](notebooks/1.4-vision-capabilities.ipynb) | Image inputs with the Responses API |
-| 5 | [Prompt Engineering Techniques](notebooks/2.0-prompt-eng-techniques.ipynb) | Zero-shot, few-shot, chain-of-thought, self-consistency |
-| 6 | [Fine-tuning](notebooks/3.0-fine-tuning-chatgpt-api.ipynb) | Fine-tuning a model via the OpenAI API |
-| 7 | [Intro to LangChain](notebooks/4.0-intro-to-langchain.ipynb) | Models, prompts, output parsers, LCEL chains, RAG |
-| 8 | [Q&A with LangChain](notebooks/4.1-qa-with-langchain.ipynb) | Document loaders, vector stores, retrieval chains |
-| 9 | [Simple RAG Tutorial](notebooks/4.2-simple_rag_tutorial.ipynb) | End-to-end RAG pipeline with Chroma |
-| 10 | [Quiz Generator App](notebooks/5.0-quiz_generator_app.ipynb) | Full app — generate quizzes from any text |
-| 11 | [Conversations API — Stateful Chat](notebooks/6.0-conversations-api-stateful-chat.ipynb) | `previous_response_id`, multi-turn without manual history |
-| 12 | [Agents with `create_agent`](notebooks/8.5-agent-with-create_agent.ipynb) | LangChain v1 `create_agent`, tool use, streaming |
-| 13 | [Tracing with LangSmith](notebooks/9.0-intro-langsmith.ipynb) | Auto-tracing chains and agents |
-| 14 | [LangGraph Multi-Step Agent](notebooks/9.5-langgraph-multi-step-agent.ipynb) | Stateful agent graphs with LangGraph |
+| 4 | [Extraction Use Case](notebooks/1.3-extraction-use-case.ipynb) | Structured extraction with Pydantic + Responses API |
+| 5 | [Vision Capabilities](notebooks/1.4-vision-capabilities.ipynb) | Image inputs with the Responses API |
+| 6 | [Prompt Engineering Techniques](notebooks/2.0-prompt-eng-techniques.ipynb) | Zero-shot, few-shot, chain-of-thought, self-consistency |
+| 7 | [Fine-tuning](notebooks/3.0-fine-tuning-chatgpt-api.ipynb) | Fine-tuning a model via the OpenAI API |
+| 8 | [Intro to LangChain](notebooks/4.0-intro-to-langchain.ipynb) | Models, prompts, output parsers, LCEL chains, RAG |
+| 9 | [Q&A with LangChain](notebooks/4.1-qa-with-langchain.ipynb) | Document loaders, vector stores, retrieval chains |
+| 10 | [Simple RAG Tutorial](notebooks/4.2-simple_rag_tutorial.ipynb) | End-to-end RAG pipeline with Chroma |
+| 11 | [Quiz Generator App](notebooks/5.0-quiz_generator_app.ipynb) | Full app — generate quizzes from any text |
+| 12 | [Conversations API — Stateful Chat](notebooks/6.0-conversations-api-stateful-chat.ipynb) | `previous_response_id`, multi-turn without manual history |
+| 13 | [Agents with `create_agent`](notebooks/8.5-agent-with-create_agent.ipynb) | LangChain v1 `create_agent`, tool use, streaming |
+| 14 | [Tracing with LangSmith](notebooks/9.0-intro-langsmith.ipynb) | Auto-tracing chains and agents |
+| 15 | [LangGraph Multi-Step Agent](notebooks/9.5-langgraph-multi-step-agent.ipynb) | Stateful agent graphs with LangGraph |
 
 ### Extra notebooks
 
