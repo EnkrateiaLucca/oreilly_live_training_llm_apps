@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Introduction to LLM-Based Agents</title>
+    <title>Building LLM Apps with the OpenAI Responses API & LangChain v1</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -13,44 +13,170 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code {font-family: 'Ubuntu Mono'; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      /* ---------- Theme ---------- */
+      .remark-slide-content {
+        background: #FDFBF7;
+        color: #21303f;
+        font-size: 22px;
+        padding: 1em 2.5em;
+      }
+      .remark-slide-content h1 {
+        font-size: 46px;
+        color: #16324f;
+        margin-bottom: 0.4em;
+        border-bottom: 3px solid #E76F51;
+        display: table;
+        padding-bottom: 4px;
+      }
+      .remark-slide-content h2 { font-size: 34px; color: #2a4a6b; }
+      .remark-slide-content h3 { font-size: 28px; color: #2a4a6b; }
+
+      /* Section divider slides */
+      .inverse {
+        background: #16324f;
+        color: #f5f1e8;
+      }
+      .inverse h1, .inverse h2, .inverse h3 {
+        color: #FDFBF7;
+        border-bottom: none;
+      }
+      .inverse h1 { font-size: 60px; }
+      .inverse .accent { color: #F4A261; }
+
+      /* Code */
+      .remark-code {
+        font-size: 0.78em;
+        border-radius: 8px;
+      }
+      .remark-inline-code {
+        background: #f1e9da;
+        color: #c2503c;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+
+      /* Tables */
+      .remark-slide-content table {
+        border-collapse: collapse;
+        margin: 18px 0;
+        width: 100%;
+      }
+      .remark-slide-content th {
+        background: #16324f;
+        color: #FDFBF7;
+        padding: 10px 14px;
+        text-align: left;
+        font-family: 'Yanone Kaffeesatz';
+        font-size: 24px;
+        letter-spacing: 0.5px;
+      }
+      .remark-slide-content td {
+        padding: 9px 14px;
+        border-bottom: 1px solid #e3dccd;
+      }
+      .remark-slide-content tr:nth-child(even) td { background: #f6f1e7; }
+
+      /* Two-column layout */
+      .pull-left  { float: left;  width: 48.5%; }
+      .pull-right { float: right; width: 48.5%; }
+      .pull-left h3, .pull-right h3 { margin-top: 0; }
+
+      /* Labels for old/new code comparisons */
+      .label-old, .label-new {
+        display: inline-block;
+        font-family: 'Yanone Kaffeesatz';
+        font-size: 22px;
+        padding: 2px 14px;
+        border-radius: 14px;
+        margin-bottom: 6px;
+      }
+      .label-old { background: #f8d7cf; color: #a83a26; }
+      .label-new { background: #d9ead3; color: #2d6a4f; }
+
+      /* Demo callout slides */
+      .demo-pill {
+        background: lightgreen;
+        padding: 4px 18px;
+        border-radius: 10px;
+      }
+
+      /* Agent-loop diagram */
+      .flow { display: flex; align-items: center; justify-content: center; margin-top: 40px; }
+      .flow .box {
+        background: #16324f; color: #FDFBF7;
+        font-family: 'Yanone Kaffeesatz'; font-size: 26px;
+        padding: 18px 26px; border-radius: 10px; text-align: center;
+      }
+      .flow .box.tool { background: #E76F51; }
+      .flow .box.answer { background: #2d6a4f; }
+      .flow .arrow { font-size: 34px; color: #b08968; margin: 0 14px; }
+
+      .footnote { font-size: 14px; margin-top: 10px; }
+      blockquote {
+        border-left: 5px solid #E76F51;
+        background: #f6efe2;
+        margin-left: 0;
+        padding: 8px 16px;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
     <textarea id="source">
-      class: center, middle
-      # Building Text-Based Applications with the ChatGPT API & LangChain
+      class: center, middle, inverse
+      # Building LLM Apps with the .accent[OpenAI Responses API] & .accent[LangChain v1]
       ### Lucas Soares
-      #### 07-05-2024
+      #### 06-10-2026
 
       ---
 
       # Quick 'Interactivity Notes'
 
       - The presentation will be organized into the following structure:
-      
+
       --
-      
+
         - __Presentation Block__
-      
+
       --
 
         - __Notebook Demo__
-      
+
       --
 
         - __Quick Q&A + Summary__
-      
+
       --
 
         - __Optional Exercise__ During Q&A (for those that don't have questions and want to try something out)
-      
+
       --
-      
+
       - Repeat
 
       ---
-      class: center, middle
+
+      # Today's Roadmap
+
+      1. __LLM Foundations__ — what they are, how transformers work
+
+      2. __OpenAI Responses API__ — the new core API, model lineup, reasoning effort, hosted tools
+
+      3. __Prompt Basics__ — anatomy of a great prompt
+
+      4. __Fine-Tuning__ — when and how to specialize a model
+
+      5. __LangChain v1 + LangGraph__ — models, structured output, agents with `create_agent`
+
+      6. __RAG__ — chat over your documents
+
+      7. __What's deprecated in 2026__ — so your code doesn't rot
+
+      ---
+      class: center, middle, inverse
 
       # Large Language Models
 
@@ -70,7 +196,7 @@
 
       <img src="../notebooks/assets-resources/chatgpt-demo.png" alt="ChatGPT Demo" style="width: 600px;"/>
 
-      
+
 
       ---
 
@@ -80,7 +206,7 @@
 
       <img src="../notebooks/assets-resources/google-icon.png" alt="Google Icon" style="width: 600px;"/>
 
-      
+
 
       ---
 
@@ -92,54 +218,54 @@
 
       --
 
-      - And so much more from Q&A over PDFs to personalized tutoring. 
+      - And so much more from Q&A over PDFs to personalized tutoring.
 
       ---
-      class: center, middle
+      class: center, middle, inverse
 
-      # Behind all of these applications is a powerful architecture: __Transformers__
+      # Behind all of these applications is a powerful architecture: .accent[__Transformers__]
 
       ---
 
       <div style="display: flex; justify-content: center;">
           <img src="../notebooks/assets-resources/transformer-process.png" width="600px">
       </div>
-        
+
       ---
 
       # Transformers
 
       <img src="../notebooks/assets-resources/transformers-architecture.png" alt="Transformers Architecture" style="width: 800px;"/>
 
-      <p style="font-size: 14px; margin-top: 10px;">
+      <p class="footnote">
         <sup>[1]</sup><a href="https://www.youtube.com/watch?v=qaWMOYf4ri8&t=1959s">What are Transformers and How do They Work? By Serrano Academy</a>
       </p>
 
       ---
-      
+
       # Benefits of Large Language Models
-      
+
       - Multi-task Capability
-      
+
         - LLMs find applications in content generation, question answering, translation, tutoring, and personal assistants.
 
       --
-      
+
       - Fine-tuning
         - LLMs can usually be fine tuned with a relatively small amount of data, making them adaptable to a wide range of tasks.
 
       --
 
       - Scalability
-      
+
         - LLMs demonstrate excellent scalability to very large capacity networks and huge datasets.
 
       ---
-      
+
       # Limitations and Ethical Considerations
 
       ## LLMs are far from perfect
-      
+
       --
 
       - __Knowledge Limit__: LLMs have a cutoff point for their knowledge.
@@ -166,16 +292,16 @@
       <img src="../notebooks/assets-resources/panda-letters-app-demo.png" width="800px">
 
       <h1>
-        <span style="background-color: lightgreen">
+        <span class="demo-pill">
           Demo App - Panda Letters
         </span>
       </h1>
-      
-      
+
+
       ---
 
       # Q&A & Summary
-      
+
       - __LLMs predict the next word__ and generate human-like text.
 
       - __LLMs power diverse applications__ including conversational chatbots, search engines, and translation services, demonstrating their versatility in handling various language tasks.
@@ -189,22 +315,24 @@
       - <span style="color: grey">Optional Exercise</span>
 
           - <span style="color: grey">Set up your OpenAI API key and prepare for the practical demos</span>
-        
+
       ---
-      class: center, middle
-     
+      class: center, middle, inverse
+
       # Break
 
       ---
-      class: center, middle
-      
-      # Introduction to the ChatGPT API
+      class: center, middle, inverse
+
+      # OpenAI .accent[Responses API]
+
+      ### The single API for models + tools + state
 
       ---
-      
-      # Introduction to the ChatGPT API
 
-      - The ChatGPT API allows you to use OpenAI's models to generate human-like text based on the input you provide.
+      # Introduction to the OpenAI Responses API
+
+      - The __Responses API__ is OpenAI's core API: one endpoint for text generation, reasoning, hosted tools, and multi-turn state.
 
       --
 
@@ -215,29 +343,169 @@
         client = OpenAI()
 
         def get_response(prompt_question):
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo-0125",
-                messages=[{"role": "system", "content": "You are a helpful research and programming assistant"},
-                        {"role": "user", "content": prompt_question}]
+            response = client.responses.create(
+                model="gpt-5.4-mini",
+                instructions="You are a helpful research and programming assistant",
+                input=prompt_question,
             )
-            
-            return response.choices[0].message.content
+            return response.output_text
       ```
 
       --
 
-      - Required parameters: `model`, `messages`
+      - Required parameters: `model`, `input`
 
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[2]</sup><a href="https://platform.openai.com/docs/introduction">OpenAI Docs</a>
+      --
+
+      - `instructions` replaces the old system message; `response.output_text` gives you the answer directly.
+
+      <p class="footnote">
+        <sup>[2]</sup><a href="https://platform.openai.com/docs/api-reference/responses">OpenAI Docs - Responses API</a>
+      </p>
+
+      ---
+
+      # Responses vs. Chat Completions
+
+      .pull-left[
+      <span class="label-old">Chat Completions (legacy)</span>
+
+      ```python
+      completion = client.chat.completions.create(
+          model="gpt-5.4-mini",
+          messages=[
+            {"role": "system",
+             "content": "You are helpful."},
+            {"role": "user",
+             "content": "Hi!"},
+          ],
+      )
+
+      print(completion.choices[0]
+            .message.content)
+      ```
+      ]
+
+      .pull-right[
+      <span class="label-new">Responses (current)</span>
+
+      ```python
+      response = client.responses.create(
+          model="gpt-5.4-mini",
+          instructions="You are helpful.",
+          input="Hi!",
+      )
+
+      print(response.output_text)
+
+      # multi-turn without resending
+      # the whole transcript:
+      client.responses.create(
+          model="gpt-5.4-mini",
+          previous_response_id=response.id,
+          input="Tell me more!")
+      ```
+      ]
+
+      <br style="clear: both;"/>
+
+      - OpenAI reports a __40–80% improvement in cache utilization__ vs Chat Completions in internal tests → lower latency and cost.
+
+      <p class="footnote">
+        <sup>[3]</sup><a href="https://platform.openai.com/docs/guides/migrate-to-responses">Migrate to the Responses API</a>
+      </p>
+
+      ---
+
+      # The 2026 Model Lineup
+
+      | Model | One-line use case |
+      |---|---|
+      | `gpt-5.5` | Flagship: hardest coding, agentic, and professional work |
+      | `gpt-5.5-pro` | Maximum reasoning depth for the toughest problems (defaults to high effort) |
+      | `gpt-5.4` | Affordable previous-gen workhorse for coding & professional work |
+      | `gpt-5.4-mini` | Fast + cheap: coding, computer use, and subagents |
+      | `gpt-5.4-nano` | Ultra-low latency/cost: classification, autocomplete, simple extraction |
+
+      --
+
+      > In this course we'll use __`gpt-5.4-mini`__ for most examples — best price/performance for learning and prototyping.
+
+      <p class="footnote">
+        <sup>[4]</sup><a href="https://platform.openai.com/docs/models">OpenAI Docs - Models</a>
+      </p>
+
+      ---
+
+      # Controlling Thinking: `reasoning_effort`
+
+      ```python
+      response = client.responses.create(
+          model="gpt-5.5",
+          reasoning={"effort": "high"},
+          input="Find the bug in this concurrency code...",
+      )
+      ```
+
+      --
+
+      - __`low`__ — efficient reasoning when tool-use/planning still matters; latency-sensitive apps.
+
+      --
+
+      - __`medium`__ — the default: balanced quality, latency, and cost for most workflows.
+
+      --
+
+      - __`high`__ — complex agentic tasks, deep planning and debugging, when latency is less critical.
+
+      --
+
+      - __`xhigh`__ — hardest async tasks: deep research, frontier problem-solving — let it cook.
+
+      --
+
+      > ⚠️ Higher is not automatically better: with vague instructions, more effort can mean overthinking. Increase only when evals show gains.
+
+      <p class="footnote">
+        <sup>[5]</sup><a href="https://developers.openai.com/api/docs/guides/latest-model">OpenAI Docs - Using GPT-5.5</a>
+      </p>
+
+      ---
+
+      # Hosted Tools: Batteries Included
+
+      One parameter turns the model into an agent — OpenAI runs the tools for you:
+
+      ```python
+      response = client.responses.create(
+          model="gpt-5.4-mini",
+          tools=[{"type": "web_search"}],
+          input="What changed in LangChain v1?",
+      )
+      ```
+
+      --
+
+      | Tool | What it does |
+      |---|---|
+      | `web_search` | Up-to-date answers from the web, with citations |
+      | `file_search` | Semantic search over your uploaded files (hosted RAG) |
+      | `code_interpreter` | Writes & runs Python in a sandbox (data analysis, math) |
+      | `image_generation` | Generates / edits images inside the same conversation |
+      | `computer_use` | Agentic control of a screen: clicks, typing, navigation |
+      | `mcp` | Connect any remote MCP server as a tool source |
+
+      <p class="footnote">
+        <sup>[6]</sup><a href="https://platform.openai.com/docs/guides/tools">OpenAI Docs - Using tools</a>
       </p>
 
       ---
       class: center, middle
-      
+
       <h1>
-      <span style="background-color: lightgreen">
-        Notebook Demo 1.0 - Intro to ChatGPT API & Prompt Basics
+      <span class="demo-pill">
+        Notebook Demo 1.0 - Intro to the Responses API & Prompt Basics
       </span>
       </h1>
 
@@ -262,7 +530,7 @@
       <div style="display: flex; justify-content: center;">
         <img src="../notebooks/assets-resources/prompt-constrains-space.png" width="600px">
       </div>
-      
+
       ---
       # Prompt Basics
 
@@ -297,38 +565,34 @@
       ## Components of the prompt: <span style="color: green">instruction</span>, <span style="color: black">context</span> <span style="color:  #0d8eb9">input data</span> , <span style="color: red">output indicator</span>
 
       <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.008.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
-      
+
       ---
 
       # Q&A & Summary
 
-        - __Prompts__ are the inputs to LLMs__
+        - __Prompts__ are the inputs to LLMs
 
         - __Prompts__ allow users to __guide the model's responses__ and generate specific outputs.
-        
+
         - __Components of a prompt:__ instruction, context, input data, and output indicator.
 
-        - __ChatGPT API: __ programatic access to GPT models by OpenAI
+        - __Responses API:__ programmatic access to OpenAI models — required parameters: `model`, `input`
 
-        - __ChatGPT API: __required parameters: `model`, `messages`
+        - __Pick the right knob:__ choose the model (`gpt-5.4-mini` for most work) and the `reasoning_effort` (low → xhigh) for the task.
 
         - <span style="color: grey"> __Optional Exercise During Q&A__ </span>
 
           ```
           Create a prompt that summarizes a piece of text in a format/structure of your choice.
           ```
-    
-      ---
-      class: center, middle
 
-      # Break
       ---
-      class: center, middle
+      class: center, middle, inverse
 
       # Break
 
       ---
-      
+
       <img src="../notebooks/assets-resources/fine-tuning-slides/fine-tuning-slides.001.jpeg" alt="Fine Tuning 1" style="width: 800px;"/>
 
       ---
@@ -355,8 +619,8 @@
 
       <img src="../notebooks/assets-resources/fine-tuning-slides/fine-tuning-slides.007.jpeg" alt="Fine Tuning 7" style="width: 800px;"/>
 
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[4]</sup> <a href="https://platform.openai.com/docs/guides/fine-tuning">OpenAI's Fine Tuning Docs</a>
+      <p class="footnote">
+        <sup>[7]</sup> <a href="https://platform.openai.com/docs/guides/fine-tuning">OpenAI's Fine Tuning Docs</a>
       </p>
 
       ---
@@ -425,26 +689,64 @@
 
       ---
 
-      
+
       <img src="../notebooks/assets-resources/fine-tuning-slides/fine-tuning-slides.024.jpeg" alt="Fine Tuning 24" style="width: 800px;"/>
 
       ---
 
-      <img src="../notebooks/assets-resources/fine-tuning-slides/fine-tuning-slides.025.jpeg" alt="Fine Tuning 25" style="width: 800px;"/>      
+      <img src="../notebooks/assets-resources/fine-tuning-slides/fine-tuning-slides.025.jpeg" alt="Fine Tuning 25" style="width: 800px;"/>
 
       ---
 
       <img src="../notebooks/assets-resources/fine-tuning-slides/fine-tuning-slides.026.jpeg" alt="Fine Tuning 26" style="width: 800px;"/>
-      
+
 
       ---
       class: center, middle
 
       <h1>
-        <span style="background-color: lightgreen">
-          Notebook Demo 3.0 - Fine Tuning ChatGPT API
+        <span class="demo-pill">
+          Notebook Demo 3.0 - Fine Tuning OpenAI Models
         </span>
       </h1>
+
+      ---
+      class: center, middle, inverse
+
+      # LangChain .accent[v1] + LangGraph
+
+      ### What changed, in three lines
+
+      ---
+
+      # LangChain v1: What Changed
+
+      - `create_agent` __replaces__ `create_react_agent` — one standard agent built on LangGraph.
+
+      --
+
+      - `system_prompt` __replaces__ the old `prompt` parameter — pass a plain string.
+
+      --
+
+      - Legacy chains (`LLMChain`, `RetrievalQA`, LCEL pipelines) moved to `langchain-classic` — the modern basics are __direct model calls + agents__.
+
+      --
+
+      ```python
+      # the whole v1 mental model in 6 lines
+      from langchain.agents import create_agent
+
+      agent = create_agent(
+          model="openai:gpt-5.4-mini",
+          tools=[my_tool],
+          system_prompt="You are a helpful assistant.",
+      )
+      ```
+
+      <p class="footnote">
+        <sup>[8]</sup><a href="https://docs.langchain.com/oss/python/migrate/langchain-v1">LangChain v1 Migration Guide</a>
+      </p>
 
       ---
 
@@ -452,222 +754,202 @@
         <img src="../notebooks/assets-resources/what-is-langchain.png" width="800px">
       </div>
 
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
+      <p class="footnote">
+        <sup>[9]</sup><a href="https://docs.langchain.com/oss/python/langchain/quickstart">LangChain Docs</a>
       </p>
-      
+
       ---
 
-      # LangChain Components
+      # LangChain Building Blocks
 
       --
 
       ## Models
-      
-      --
-
-      - Abstractions over the LLM APIs like the ChatGPT API
 
       --
-        
+
+      - One unified entry point for any provider: `init_chat_model`
+
+      --
+
         ```python
-        from langchain_openai import ChatOpenAI
+        from langchain.chat_models import init_chat_model
 
-        chat_model = ChatOpenAI(model="gpt-3.5-turbo-0125")
+        model = init_chat_model("openai:gpt-5.4-mini")
 
-        output = chat_model.invoke("I am teaching a live-training\
+        output = model.invoke("I am teaching a live-training\
             about LLMs!")
 
         print(output.content)
         ```
-      
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
+
+      --
+
+      - Swap `"openai:gpt-5.4-mini"` for `"anthropic:..."`, `"google_genai:..."` — same code.
+
+      <p class="footnote">
+        <sup>[9]</sup><a href="https://docs.langchain.com/oss/python/langchain/models">LangChain Docs - Models</a>
       </p>
       ---
 
-      # LangChain Components
+      # LangChain Building Blocks
 
       --
 
-      ## Prompt Templates
+      ## Messages
 
       --
 
-      - Abstractions over standard prompts to LLMs
-
-
+      - Conversations are just lists of role + content — no special template language needed:
 
       --
 
         ```python
-        from langchain_core.prompts import ChatPromptTemplate
+        response = model.invoke([
+            {"role": "system",
+             "content": "You are a concise teaching assistant."},
+            {"role": "user",
+             "content": "Explain embeddings in one sentence."},
+        ])
 
-        prompt = ChatPromptTemplate.from_template(
-          """Show me 5 examples of this concept: {concept}"""
-          )
-
-        prompt.format(concept="animal")
-
-        # Output
-        # 'Human: Show me 5 examples of this concept: animal'
+        print(response.content)
         ```
 
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
-        </p>
+      --
 
-      ???
-        When I say Abstraction I mean for example that you can treat pieces of text in a regular prompt like a variable
-        you can dynamically change without modifying the rest of the prompt.
-      
+      - Need dynamic prompts? Plain Python f-strings work great:
+
+        ```python
+        question = f"Show me 5 examples of this concept: {concept}"
+        ```
+
+      <p class="footnote">
+        <sup>[9]</sup><a href="https://docs.langchain.com/oss/python/langchain/messages">LangChain Docs - Messages</a>
+      </p>
+
       ---
 
-      # LangChain Components
+      # LangChain Building Blocks
 
       --
 
-      ## Output Parsers
+      ## Structured Output
 
       --
 
-      - Translates raw output from LLM to a workable format
+      - Get validated Python objects instead of raw strings:
 
       --
 
         ```python
-        from langchain_core.output_parsers import StrOutputParser
-        output_parser = StrOutputParser()
+        from pydantic import BaseModel, Field
+
+        class Quiz(BaseModel):
+            question: str
+            options: list[str]
+            answer: str = Field(description="The correct option")
+
+        structured_model = model.with_structured_output(Quiz)
+
+        quiz = structured_model.invoke(
+            "Write a quiz question about transformers")
+
+        quiz.answer   # plain attribute access, fully typed
         ```
-      
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
+
+      <p class="footnote">
+        <sup>[9]</sup><a href="https://docs.langchain.com/oss/python/langchain/structured-output">LangChain Docs - Structured Output</a>
       </p>
       ---
 
-      # Chains in LangChain
+      # Agents with `create_agent`
 
       --
 
-      ## Chain = Model + Prompt + Output Parser
-
-      --
-
-      - Chains are the building blocks in LangChain
-
-      --
-
-      - They are used to compose abstractions that go from simple to complex components
+      ## Agent = Model + Tools + System Prompt
 
       --
 
         ```python
-        llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
-        prompt = ChatPromptTemplate.from_template("""
-        output_parser = StrOutputParser()
-        Write 5 concepts that are fundamental to learn about {topic}.
-                                                  """)
-        chain = prompt | llm | output_parser
-        chain.invoke({"topic": "Artificial Neural Networks"})
+        from langchain.agents import create_agent
+
+        def get_weather(city: str) -> str:
+            """Get the current weather for a city."""
+            return f"It's always sunny in {city}!"
+
+        agent = create_agent(
+            model="openai:gpt-5.4-mini",
+            tools=[get_weather],
+            system_prompt="You are a helpful assistant.",
+        )
+
+        agent.invoke({"messages": [
+            {"role": "user", "content": "Weather in SF?"}]})
         ```
-      
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
+
+      --
+
+      - Runs on __LangGraph__ under the hood → persistence, streaming, human-in-the-loop for free.
+
+      <p class="footnote">
+        <sup>[10]</sup><a href="https://docs.langchain.com/oss/python/langchain/agents">LangChain Docs - Agents</a>
       </p>
       ---
 
-      # LCEL - LangChain Expression Language
-      
-      ## Composing Chains with LCEL
+      # The Agent Loop
+
+      The model decides when to call your tools, observes results, and keeps going until it can answer:
+
+      <div class="flow">
+        <div class="box">Your<br/>Question</div>
+        <div class="arrow">→</div>
+        <div class="box">Model<br/>(gpt-5.4-mini)</div>
+        <div class="arrow">→</div>
+        <div class="box tool">Tool<br/>Call</div>
+        <div class="arrow">→</div>
+        <div class="box tool">Tool<br/>Result</div>
+        <div class="arrow">↩</div>
+      </div>
+
+      <div class="flow" style="margin-top: 20px;">
+        <div class="box">Model reasons<br/>over results</div>
+        <div class="arrow">→</div>
+        <div class="box answer">Final<br/>Answer</div>
+      </div>
 
       --
 
-      - LCEL is a powerful, declarative language designed 
-      to streamline the composition of complex chains 
-      in the LangChain framework.
+      - This loop is exactly what `create_agent` (LangChain) and hosted tools (OpenAI) automate for you.
 
-      --
-
-      - Pipe syntax
-
-          <img src="../notebooks/assets-resources/lcel-image.png" alt="LCEL" width="300px;">
-
-      --
-
-      ```python
-          chain = prompt | llm | output_parser
-      ```
-      
-      --
-      
-      - Allows you to build complex chain pipelines
-        with a simple standard interface
-    
-      
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
-      </p>
-      ---
-
-      # LCEL - Runnables
-
-
-      - To facilitate creation of custom chains, LangChain has implemented a __"Runnable" protocol__.
-
-      --
-
-      - The standard interface includes `stream`, `invoke`, and `batch` methods. Async methods are also available
-
-      --
-      
-      - The input type and output type vary by component:
-
-      <img src="../notebooks/assets-resources/components_input_output.png" alt="Components Input Output" style="width: 600px;"/>
-
-      <p style="font-size: 14px; margin-top: 10px;">
-        <sup>[5]</sup><a href="https://python.langchain.com/docs/get_started/introduction">LangChain Docs</a>
-      </p>
-
-
-      ???
-
-        - `stream`: Stream back chunks of the response
-      
-      
-        
-        - `invoke`: Call the chain on an input
-      
-        
-        - `batch`: Call the chain on a list of inputs
-      
       ---
       class: center, middle
-      
+
 
       <h1>
-        <span style="background-color: lightgreen">
+        <span class="demo-pill">
           Notebook Demo 4.0 - Intro to LangChain
         </span>
       </h1>
-      
+
       ---
 
       # Q&A & Summary
 
-      - Fine tuning ChatGPT API: process of training a pre-trained model on a specific task or dataset.
+      - Fine tuning: process of training a pre-trained model on a specific task or dataset (prepare the data, train the model, use the model).
 
-      - Fine tuning steps for the ChatGPT API: prepare the data, train the model, use the model. 
-      
-      - __LLMs can predict the next word in a sequence__. ("I Like eating...? ;P ") 
+      - __`init_chat_model("openai:gpt-5.4-mini")`__ gives you one model interface across providers.
 
-      - __Chains__ are the building blocks in LangChain, composed of Models, Prompt Templates, and Output Parsers.
+      - __Messages__ are plain dicts: `{"role": ..., "content": ...}` — invoke the model directly, no chain pipelines needed.
 
-      - __LCEL__ is a declarative language that users the Unix pipe symbol to build complex chain pipelines with a simple standard interface.
+      - __Structured output__ with Pydantic (`with_structured_output`) turns LLM text into validated Python objects.
+
+      - __`create_agent`__ = model + tools + `system_prompt`, running the agent loop on LangGraph.
 
       - <span style="color: grey">Optional Exercise During Q&A</span>
 
         ```
-        Create a simple chain that can answer questions about a specific topic.
+        Create a small agent with one custom tool that can answer
+        questions about a specific topic.
         ```
 
       ???
@@ -675,16 +957,16 @@
       <span style="color: red">Maybe add a live chat summary?</span>
 
       ---
-      class: center, middle
+      class: center, middle, inverse
 
-      # Break 5 minutes
+      # Break .accent[5 minutes]
 
       ---
 
       # LangChain for Chat Over Documents
 
       <img src="../notebooks/assets-resources/rag-docs.png">
-      
+
       --
 
       - RAG = __R__etrieval __A__ugmented __G__eneration
@@ -766,14 +1048,14 @@
       - Store
 
       ---
-      
+
       # LangChain for Chat Over Documents
 
       <img src="../notebooks/assets-resources/rag-langchain-retrieval.png" alt="RAG LangChain" style="width: 600px;"/>
 
       --
 
-      - Retrieval Piepeline
+      - Retrieval Pipeline
 
       --
 
@@ -786,36 +1068,42 @@
       --
 
         - LLM uses the prompt question + retrieved data to produce a final answer
-      
+
       ---
 
-      # LangChain for Chat Over Documents
+      # RAG the v1 Way: Retrieval as a Tool
 
       - Sample Code
 
       ```python
-      from langchain import hub
-      from langchain_community.vectorstores import Chroma
-      from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-      from langchain.document_loaders import PyPDFLoader
-      from langchain.chains import RetrievalQA
+      from langchain_openai import OpenAIEmbeddings
+      from langchain_chroma import Chroma
+      from langchain_community.document_loaders import PyPDFLoader
+      from langchain.agents import create_agent
 
-      pdf_path = "path-to-pdf.pdf"
-      loader = PyPDFLoader(pdf_path) # LOAD
-      pdf_docs = loader.load_and_split() # SPLIT
-      embeddings = OpenAIEmbeddings() # EMBED
-      vectordb = Chroma.from_documents(pdf_docs, embedding=embeddings) # STORE
-      retriever = vectordb.as_retriever() 
-      llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
-      pdf_qa = RetrievalQA.from_llm(llm=llm, retriever=retriever) # RETRIEVE
-      pdf_qa.invoke("What is this paper about?") # ANSWER
+      docs = PyPDFLoader("path-to-pdf.pdf").load_and_split()      # LOAD + SPLIT
+      vectordb = Chroma.from_documents(
+          docs, embedding=OpenAIEmbeddings())                     # EMBED + STORE
+
+      def search_pdf(query: str) -> str:
+          """Search the PDF for passages relevant to the query."""
+          results = vectordb.similarity_search(query, k=3)        # RETRIEVE
+          return "\n\n".join(doc.page_content for doc in results)
+
+      agent = create_agent(
+          model="openai:gpt-5.4-mini",
+          tools=[search_pdf],
+          system_prompt="Answer using the search_pdf tool.")
+
+      agent.invoke({"messages": [{"role": "user",
+          "content": "What is this paper about?"}]})              # ANSWER
       ```
 
       ---
       class: center, middle
 
       <h1>
-      <span style="background-color: lightgreen">
+      <span class="demo-pill">
         Notebook Demo 4.1 - Q&A with LangChain
       </span>
       </h1>
@@ -832,28 +1120,61 @@
 
       - __Vector DBs__ are used to store and retrieve embeddings.
 
-      - __RAG__ systems with LangChain are built using a pipeline that includes loading, splitting, embedding, and storing documents.
+      - __RAG in v1__: load → split → embed → store, then expose retrieval as a __tool__ to `create_agent` (no more `RetrievalQA`).
 
       - <span style="color: red"> __Optional Exercise During Q&A__ </span>
 
         ```
-        Create a simple RAG system with LangChain that can answer questions about pdfs or csvs. 
+        Create a simple RAG agent with LangChain that can answer questions about pdfs or csvs.
         ```
 
       ???
 
       <span style="color: red">Maybe add a live chat summary?</span>
-      
-      ---
-      class: center, middle
-
-      # Break
 
       ---
-      class: center, middle
-      
+
+      # Before You Ship: What's Deprecated in 2026
+
+      | Deprecated | Status | Use instead |
+      |---|---|---|
+      | __Assistants API__ | Sunsets __Aug 26, 2026__ | Responses API + Conversations |
+      | __Chat Completions__ | Legacy (still supported) | Responses API |
+      | `initialize_agent` / `AgentExecutor` | __Removed__ in LangChain v1 | `create_agent` |
+      | `create_react_agent` (langgraph.prebuilt) | Replaced | `create_agent` |
+      | `LLMChain`, `RetrievalQA`, LCEL chains | Moved to `langchain-classic` | Direct `.invoke()` + agents |
+
+      --
+
+      > Rule of thumb: if a tutorial says `chat.completions`, `Assistants`, or `AgentExecutor` — it's from the past. 🦖
+
+      <p class="footnote">
+        <sup>[3]</sup><a href="https://platform.openai.com/docs/deprecations">OpenAI Deprecations</a> ·
+        <sup>[8]</sup><a href="https://docs.langchain.com/oss/python/releases/langchain-v1">LangChain v1 Release Notes</a>
+      </p>
+
+      ---
+
+      # Migration Cheat Sheet: Old → New
+
+      | You used to write... | Now write... |
+      |---|---|
+      | `client.chat.completions.create(...)` | `client.responses.create(...)` |
+      | `messages=[{"role": "system", ...}]` | `instructions="..."` + `input="..."` |
+      | `response.choices[0].message.content` | `response.output_text` |
+      | `gpt-3.5-turbo` / `gpt-4` | `gpt-5.4-mini` (default), `gpt-5.5` (hard stuff) |
+      | `ChatOpenAI(model=...)` | `init_chat_model("openai:gpt-5.4-mini")` |
+      | LCEL pipe chains (`prompt`, `llm`, `parser`) | `model.invoke(...)` / `with_structured_output` |
+      | `create_react_agent(llm, tools, prompt=...)` | `create_agent(model, tools, system_prompt=...)` |
+      | `RetrievalQA.from_llm(...)` | retrieval function as a __tool__ + `create_agent` |
+
+      Take a photo of this one. 📸
+
+      ---
+      class: center, middle, inverse
+
       <h1>
-        <span style="background-color: lightgreen">
+        <span class="demo-pill" style="color: #16324f;">
         Practical Session
         </span>
       </h1>
@@ -863,18 +1184,31 @@
 
       # References
       1. [What are Transformers and How do They Work? By Serrano Academy](https://www.youtube.com/watch?v=qaWMOYf4ri8&t=1959s)
-      2. [OpenAI Docs](https://platform.openai.com/docs/introduction)
-      3. [OpenAI's Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
-      4. [OpenAI's Fine Tuning Docs](https://platform.openai.com/docs/guides/fine-tuning)
-      5. [LangChain Docs](https://python.langchain.com/docs/get_started/introduction)
-      6. [ReACT Paper](https://arxiv.org/abs/2210.03629)
+      2. [OpenAI Docs - Responses API](https://platform.openai.com/docs/api-reference/responses)
+      3. [Migrate to the Responses API](https://platform.openai.com/docs/guides/migrate-to-responses)
+      4. [OpenAI Docs - Models](https://platform.openai.com/docs/models)
+      5. [OpenAI Docs - Using GPT-5.5 & Reasoning](https://developers.openai.com/api/docs/guides/latest-model)
+      6. [OpenAI Docs - Using Tools](https://platform.openai.com/docs/guides/tools)
+      7. [OpenAI's Fine Tuning Docs](https://platform.openai.com/docs/guides/fine-tuning)
+      8. [LangChain v1 Migration Guide](https://docs.langchain.com/oss/python/migrate/langchain-v1)
+      9. [LangChain Docs - Quickstart](https://docs.langchain.com/oss/python/langchain/quickstart)
+      10. [LangChain Docs - Agents](https://docs.langchain.com/oss/python/langchain/agents)
+      11. [OpenAI Deprecations](https://platform.openai.com/docs/deprecations)
+      12. [ReACT Paper](https://arxiv.org/abs/2210.03629)
 
       ---
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
     <script>
-      var slideshow = remark.create({ratio: "4:3"});
+      var slideshow = remark.create({
+        ratio: "16:9",
+        highlightStyle: "github",
+        highlightLanguage: "python",
+        highlightLines: true,
+        countIncrementalSlides: false,
+        slideNumberFormat: "%current% / %total%"
+      });
     </script>
   </body>
 </html>
