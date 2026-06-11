@@ -1,12 +1,13 @@
 ipykernel
-openai
-langchain>=0.3.0
+openai>=1.60
+langchain>=1.0
+langgraph>=1.1
 langsmith
 langchain-cli
 langserve
-langchain-openai
+langchain-openai>=1.0
 langchain-ollama
-langchain-community
+langchain-community>=1.0
 langchain-pinecone
 langchainhub
 langchain-chroma
