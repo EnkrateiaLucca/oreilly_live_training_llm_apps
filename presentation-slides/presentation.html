@@ -13,7 +13,7 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono', 'Menlo', 'Consolas', monospace; }
 
       /* ---------- Theme ---------- */
       .remark-slide-content {
@@ -115,6 +115,24 @@
       .flow .arrow { font-size: 34px; color: #b08968; margin: 0 14px; }
 
       .footnote { font-size: 14px; margin-top: 10px; }
+
+      /* Print / save-as-PDF: one full-bleed 16:9 page per slide */
+      @page {
+        size: 1210px 681px;
+        margin: 0;
+      }
+      @media print {
+        .remark-slide-scaler {
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(1) !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+        .remark-slide-container {
+          page-break-inside: avoid;
+        }
+      }
       blockquote {
         border-left: 5px solid #E76F51;
         background: #f6efe2;
@@ -512,17 +530,17 @@
       ---
       # Prompt Basics
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.001.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.001.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # Prompt Basics
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.002.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.002.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # Prompt Basics
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.003.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.003.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # A Prompt Constrains the Space of Potential Outputs
@@ -536,35 +554,35 @@
 
       ## Components of the prompt
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.004.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.004.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # Prompt Basics
 
       ## Components of the prompt: <span style="color: green">instruction</span>
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.005.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.005.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # Prompt Basics
 
       ## Components of the prompt: <span style="color: green">instruction</span>, <span style="color: black">context</span>
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.006.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.006.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # Prompt Basics
 
       ## Components of the prompt: <span style="color: green">instruction</span>, <span style="color: black">context</span> <span style="color:  #0d8eb9">input data</span>
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.007.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.007.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
       # Prompt Basics
 
       ## Components of the prompt: <span style="color: green">instruction</span>, <span style="color: black">context</span> <span style="color:  #0d8eb9">input data</span> , <span style="color: red">output indicator</span>
 
-      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.008.jpeg" width="800px" style="margin-left: -20px; margin-top: -40px;">
+      <img src="../notebooks/assets-resources/prompt-basics/prompt-basics.008.jpeg" width="760px" style="margin-top: -10px;">
 
       ---
 

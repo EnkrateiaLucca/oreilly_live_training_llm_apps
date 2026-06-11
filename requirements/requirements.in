@@ -7,7 +7,7 @@ langchain-cli
 langserve
 langchain-openai>=1.0
 langchain-ollama
-langchain-community>=1.0
+langchain-community>=0.4
 langchain-pinecone
 langchainhub
 langchain-chroma
@@ -26,4 +26,3 @@ unstructured
 pysqlite3
 wget
 plotly
-
