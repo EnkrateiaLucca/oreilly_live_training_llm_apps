@@ -1,3 +1,13 @@
+# /// script                                                                                                                                                          
+# requires-python = ">=3.12"                                                                                                                                          
+# dependencies = [                                                                                                                                                    
+#     "langchain",                                                                                                                                                    
+#     "langchain-openai",                                                                                                                                             
+#     "streamlit",
+#     "plotly",                                                                                                                         
+# ]                                                                                                                                                                   
+# ///              
+
 import streamlit as st
 import json
 import csv

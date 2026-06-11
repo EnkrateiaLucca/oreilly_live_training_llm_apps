@@ -1,3 +1,11 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "langchain",
+#     "langchain-openai",
+#     "streamlit",
+# ]
+# ///
 from langchain_openai import ChatOpenAI
 from langchain.pydantic_v1 import BaseModel, Field
 from quiz_templates import create_multiple_choice_template, create_true_false_template, create_open_ended_template
